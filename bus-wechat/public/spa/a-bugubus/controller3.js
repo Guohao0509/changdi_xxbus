@@ -103,7 +103,7 @@ app.controller('LoginController',function($rootScope,$scope,$state,$stateParams,
 app.controller('IUserController',function($rootScope,$scope,$location,$state,$myHttpService){
         $scope.user = {};
         $scope.tempUser = {};
-        console.log($rootScope.session.user.userInfo.userid)
+        console.log($rootScope.session.user.userInfo.userid);
         $myHttpService.post("api/user/queryUserinfo",{
             userid:$rootScope.session.user.userInfo.userid
         },function(data){
@@ -246,6 +246,7 @@ app.controller('ScheduleDetailController',function($ionicPopup,$window,$rootScop
         map = new AMap.Map("J_map_canvas",{
             zoom:14,
             animateEnable:false,
+            jogEnable:false,
             center:[114.530266,30.498785]
         });
         /**

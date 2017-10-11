@@ -428,3 +428,16 @@ html{
     border: 1px solid #FFA439;
     color:#FFA439;
 }
+
+.schedule-detail .my-arrow {
+    padding: 2px;
+    margin-left: 0;
+    text-align: center;
+    left: 0;
+    right: 0;
+    background-color: #f5f5f5;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+}

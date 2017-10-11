@@ -11,12 +11,12 @@ router.get('/spa', function(req, res, next) {
 router.get('/spa/index', function(req, res, next) {
     // req.session.user={
     //     "userInfo":{
-    //         "userid":"2017042117441387506447",
-    //         "phone":"15072311104",
+    //         "userid":"2017101015195773012372",
+    //         "phone":"13016487540",
     //         "sex":"0",
     //         "userStatus":1,
     //         "balance":0.0,
-    //         "openid":"osvsPwyTpOn-mgnMqNBUcfguMeFM",
+    //         "openid":"osvsPw4_JbCNjxGZyZ4lj-0rhK2c",
     //         "talSpendind":0.0,
     //         "tripCount":0,
     //         "type":0

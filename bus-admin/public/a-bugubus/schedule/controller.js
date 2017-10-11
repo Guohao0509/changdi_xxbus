@@ -120,6 +120,7 @@ app.controller('ScheduleEditController',function($rootScope,$scope,$http,$state,
         $scope.routeEditMode = false;
         $scope.driverEditMode = false;
         $scope.busEditMode = false;
+
         /*查询经停靠点信息*/
         // $myHttpService.post('api/busline/queryBusline.htm',{lineid:$scope.route.lineid},function(data){
         //     $scope.stopStationList=data.stations;
@@ -158,6 +159,9 @@ app.controller('ScheduleEditController',function($rootScope,$scope,$http,$state,
         $scope.routeEditMode = false;
         $scope.driverEditMode = false;
         $scope.busEditMode = false;
+        $scope.route = {};
+        $scope.driver = {};
+        $scope.bus = {};
     })
 
     $scope.submit  = function(){

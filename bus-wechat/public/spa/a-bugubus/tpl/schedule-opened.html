@@ -3,7 +3,7 @@
     <div class="bar bar-header bar-light">
         <h1 class="title">已开通班次列表({{totalnum}})</h1>
     </div>
-    <ion-content has-bouncing="true" class="b-gray has-header has-footer padding-top">
+    <ion-content has-bouncing="true" class="b-gray has-header padding-top">
         <ion-refresher class="gray"
                        on-refresh="refresh()"
                        pulling-text="下拉刷新……">
@@ -14,8 +14,6 @@
             </li>
             <li  class="list-item b-white schedule-item border-top padding-vertical  padding-horizontal"
                  ng-repeat="item in scheduleList">
-
-
                 <!--上下班-->
                 <div class="row row-no-padding">
                     <div class="col-66">
@@ -37,23 +35,24 @@
                     </div>
                 </div>
                 <div class="row row-no-padding">
-                    <div class="col-60">
+                    <div style="width: 100%;">
                         <div class="row-no-padding">
                             <div class="lh30">
                                 <div class="marker small"><i class="icon icon-circle b-balanced"></i></div>
                                 <span style="text-overflow: ellipsis;overflow: hidden;white-space: nowrap;width: 140px;" class="departAddress" ng-bind="item.departaddr"></span>
+                                <span class="f12 bage bage-success" style="float:right;margin-top: 8px;">始发</span>
                             </div>
                         </div>
                         <div class="row-no-padding ">
                             <div class="lh30">
                                 <div class="marker small"><i class="icon icon-circle b-assertive"></i></div>
                                 <span style="text-overflow: ellipsis;overflow: hidden;white-space: nowrap;width: 140px;" class="departAddress" ng-bind="item.arriveaddr"></span>
+                                <span class="f12 bage bage-warning" style="float:right;margin-top: 8px;">终点</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </li>
         </ul>
-        <button class="button button-middle button-block  button-light" ng-click="getMoreData()" ng-show="showMoreBtn">点击加载更多</button>
     </ion-content>
 </ui-view>

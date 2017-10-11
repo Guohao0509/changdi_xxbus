@@ -10,7 +10,7 @@
                         <div class="marker-self-adaption">出发</div>
                     </div>
                     <div>
-                        <div class="text-right lh30 gray f12" style="float: left;"><span>{{busSchedule.drivedistance}} 公里</span></div><div class="text-right lh30 gray f12" style="float: right;">&nbsp;&nbsp;&nbsp;&nbsp;约 <span ng-bind="busSchedule.drivetime"></span>分钟</div>
+                        <div class="text-right lh30 gray f12" style="float: left;"><span>{{busSchedule.drivedistance}}<b> 公里</b></span></div><div class="text-right lh30 gray f12" style="float: right;">&nbsp;&nbsp;&nbsp;&nbsp;<b>约</b> <span ng-bind="busSchedule.drivetime"></span><b> 分钟</b></div>
                     </div>
                 </div>
             </div>
@@ -51,7 +51,7 @@
                     <div class="station-list-dashed-border"></div>
                 </ul>
             </ion-scroll>
-            <div class="arrow" ng-click="expand()">
+            <div class="arrow my-arrow" ng-click="expand()">
                 <i ng-class="{true:'ion-chevron-up',false:'ion-chevron-down'}[expandStatus]" ></i>
             </div>
         </div>
