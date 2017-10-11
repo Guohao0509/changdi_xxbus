@@ -1,0 +1,136 @@
+<ui-view ng-controller="Sight_recommend_list">
+    <!--景区列表-->
+    <div class="bar bar-header bar-light">
+        <h1 class="title">景区直达</h1>
+    </div>
+    <ion-content  has-bouncing="false" class="b-gray has-header has-footer ">
+        <ion-slide-box does-continue="true" auto-play="true" slide-interval="2000" >
+            <ion-slide>
+                <div style="padding: 0;" class="row responsive-sm">
+                    <div class="col" style="padding: 0;margin: 0;">
+                        <img style="width:100%;"  src="images/test1.jpg">
+                    </div>
+                </div>
+            </ion-slide>
+            <ion-slide>
+                <div style="padding: 0;" class="row responsive-sm">
+                    <div class="col" style="padding: 0;margin: 0;">
+                        <img style="width:100%;"  src="images/test1.jpg">
+                    </div>
+                </div>
+            </ion-slide>
+            <ion-slide on-slide-changed="slideHasChanged(index)">
+                <div style="padding: 0;" class="row responsive-sm">
+                    <div class="col" style="padding: 0;margin: 0;">
+                        <img style="width:100%;"  src="images/test1.jpg">
+                    </div>
+                </div>
+            </ion-slide>
+        </ion-slide-box>
+        <div   style="position: relative;padding-bottom: 5px;text-align: center;">
+            <div   style="background-color: #fff;position: relative;display: inline-block;vertical-align: middle;border: 1px solid #dcdcdc;border-radius: 4px;line-height: 30px;min-width: 60px;">
+               <i style="display: inline-block;vertical-align: middle;font-size: 20px;" class="ion-ios-location-outline"></i>
+                <span   ng-click="selectcity('cityKEY',positionCity)"  style="display: inline-block;vertical-align: middle;">{{positionCity}}</span>
+
+                <selectcity  ng-hide="check"></selectcity>
+            </div>
+
+
+            <!--<div class="fade"   selectcity ></div>-->
+
+            <div style="position: relative;width:70%;display: inline-block;vertical-align: middle;">
+                <i style="position: absolute;line-height: 34px;right: 10px;" class="ion-ios-search-strong"></i>
+                <input style="width: 100%;padding-left: 10px;"  type="text" placeholder="景点/主题/线路">
+            </div>
+
+        </div>
+
+
+        <ul>
+            <li>
+                <!--<a ui-sref="sight_details_list">-->
+                <!--<div style="overflow: hidden;">-->
+
+                    <!--<div style="max-width: 30%;float: left;">-->
+                        <!--<img src="images/cover.jpg"style="width: 100px;height: 100px;">-->
+                    <!--</div>-->
+                    <!--<div style="max-width: 70%;float: left;">-->
+                        <!--<span class="departAddress">崇山|少林寺</span>-->
+                    <!--</div>-->
+
+                <!--</div>-->
+                <!--</a>-->
+                <!--<div style="overflow: hidden;">-->
+                    <!--<a ui-sref="sight_details_list">-->
+                        <!--<div style="max-width: 30%;float: left;">-->
+                            <!--<img src="images/cover.jpg"style="width: 100px;height: 100px;">-->
+                        <!--</div>-->
+                        <!--<div style="max-width: 70%;float: left;">-->
+                            <!--<span class="departAddress">崇山|少林寺</span>-->
+                        <!--</div>-->
+                    <!--</a>-->
+                <!--</div>-->
+
+                <a  class="item item-thumbnail-left" ui-sref="sight_details_list">
+                    <img style="top: 0;left: 0;max-height: 120px;max-width: 100px;"  src="images/cover.jpg">
+                    <div class="row row-no-padding">
+                        <div class="col-60">
+                            <div class="row-no-padding">
+                                <div class="lh30">
+                                    <span class="departAddress">崇山|少林寺</span>
+                                </div>
+                            </div>
+                            <div class="row-no-padding ">
+                                <div class="lh30">
+                                    <div class="marker small">往返+门票 直省50元</div>
+                                    <span class="departAddress" ng-bind="item.arriveaddr"></span>
+                                </div>
+                            </div>
+                            <div class="row-no-padding ">
+                                <div class="lh30">
+                                    <div class="marker small">推荐理由:</div>
+                                    <span class="departAddress" ng-bind="item.arriveaddr"></span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-40">
+                            <div class="lh30 text-right assertive">
+                                <span class="price"><span class="f14">￥119</span>{{item.price | number:0}}</span>
+                            </div>
+                            <div class="lh30 text-right assertive">
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <!--<a class="item item-thumbnail-left" ui-sref="sight_details_list">-->
+                    <!--<img src="images/cover.jpg">-->
+                    <!--<div class="row row-no-padding">-->
+                        <!--<div class="col-60">-->
+                            <!--<div class="row-no-padding">-->
+                                <!--<div class="lh30">-->
+
+                                    <!--<span class="departAddress" >名称</span>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="row-no-padding ">-->
+                                <!--<div class="lh30">-->
+                                    <!--<div class="marker small">巴拉巴拉巴拉</div>-->
+                                    <!--<span class="departAddress" ng-bind="item.arriveaddr"></span>-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+                        <!--</div>-->
+                        <!--<div class="col-40">-->
+                            <!--<div class="lh30 text-right assertive">-->
+                                <!--<span class="price"><span class="f14">金额</span>{{item.price | number:0}}</span>-->
+                            <!--</div>-->
+                            <!--<div class="lh30 text-right assertive"></div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</a>-->
+            </li>
+        </ul>
+    </ion-content>
+
+</ui-view>

@@ -1,0 +1,319 @@
+<ui-view  ng-controller="Sight_details_list">
+    <!--景区列表-->
+    <div class="bar bar-header bar-light">
+        <h1 class="title">景区直达</h1>
+    </div>
+    <ion-content style="background-color: #ffffff;"  has-bouncing="false" class="sight-details has-header has-footer ">
+        <ion-slide-box  does-continue="true" auto-play="true" slide-interval="2000" >
+            <ion-slide >
+                <div style="padding: 0;" class="row responsive-sm">
+                    <div class="col" style="padding: 0;margin: 0;">
+                        <img style="width:100%;"  src="images/test1.jpg">
+                    </div>
+                </div>
+            </ion-slide>
+            <ion-slide >
+                <div style="padding: 0;" class="row responsive-sm">
+                    <div class="col" style="padding: 0;margin: 0;">
+                        <img style="width:100%;"  src="images/test1.jpg">
+                    </div>
+                </div>
+            </ion-slide>
+            <ion-slide    on-slide-changed="slideHasChanged(index)">
+                <div style="padding: 0;" class="row responsive-sm">
+                    <div class="col" style="padding: 0;margin: 0;">
+                        <img style="width:100%;"  src="images/test1.jpg">
+                    </div>
+                </div>
+            </ion-slide>
+        </ion-slide-box>
+            <div style="margin-left: 25px;" >
+                <i style="display: inline-block;vertical-align: middle;font-size: 25px;"  class="ion-location"></i>
+                <div style="display: inline-block;vertical-align: middle;" >巴拉巴拉巴拉巴拉</div>
+            </div>
+            <div xinxin style="margin-left: 40px;position: relative;width: 140px;height: 20px;">
+                <div  style="position: absolute;background: url('images/xinxin2.png') repeat-x;z-index:3;height: 20px;"></div>
+                <div style="position: absolute;background: url('images/xinxin.png') repeat-x;z-index:2;width: 140px;height: 20px;"></div>
+                <!--<img src="images/xinxin.png" style="width: 28px;height: 20px;">-->
+            </div>
+            <div>
+                <ion-tabs  class="sight-details tabs-striped tabs-top" >
+                    <ion-tab title="套餐" on-select="onTabSelected(1)">
+                        <ion-pane class="bus-pane" >
+                            <ul class="list" style="clear: both;">
+                                <li>
+                                    <a style="border-top-style: none;padding-left: 20px;"  class=" item item-thumbnail-left" href="">
+                                        <!--<img src="images/cover.jpg">-->
+                                        <div class="row row-no-padding">
+                                            <div class="col-60">
+                                                <div class="row-no-padding">
+                                                    <div class="lh30">
+
+                                                        <span style="color: #f69028" class="departAddress" >名称</span>
+                                                    </div>
+                                                </div>
+                                                <div class="row-no-padding ">
+                                                    <div class="lh30">
+                                                        <div class="marker small">巴拉巴拉巴拉</div>
+                                                        <span class="departAddress" ng-bind="item.arriveaddr"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="row-no-padding ">
+                                                    <div class="lh30">
+                                                    <div class="marker small">集点上车</div>
+                                                    <!--<span class="f16 departTime pr5" ></span>-->
+                                                    <!--<div class="marker-self-adaption">返回</div>-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-40">
+                                                <div style="margin-bottom: 30px;" class="lh30 text-right assertive">
+                                                    <!--<div class="marker-self-adaption marker-self-adaption-assertive"></div>-->
+                                                    <span style="color: #f69028;" class="price"><span class="f14">金额</span></span>
+                                                </div>
+
+                                                <!--<div class="text-right lh30 gray" ng-show="item.leftTickets>0">余 <span ng-bind="item.leftTickets"></span> 座</div>-->
+                                                <!--<div class="text-right lh30 gray" ng-show="item.leftTickets<=0">已售完</div>-->
+                                                <div class="lh20 text-right assertive">
+                                                    <button style="min-height: 25px;font-size: 14px;line-height: 20px;border-radius: 2px;" class="button button-positive">预定</button>
+                                                    <!--<span class="price"><span class="f14">￥</span>{{item.monthprice | number:0}}</span>-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--<h2>Pretty Hate Machine</h2>-->
+                                        <!--<p>Nine Inch Nails</p>-->
+                                    </a>
+                                    <div class="item" style="padding: 0"></div>
+                                    <a style="border-top-style: none;padding-left: 20px;" class="item item-thumbnail-left" href="">
+                                        <!--<img src="images/cover.jpg">-->
+                                        <div class="row row-no-padding">
+                                            <div class="col-60">
+                                                <div class="row-no-padding">
+                                                    <div class="lh30">
+
+                                                        <span style="color: #f69028" class="departAddress" >名称</span>
+                                                    </div>
+                                                </div>
+                                                <div class="row-no-padding ">
+                                                    <div class="lh30">
+                                                        <div class="marker small">巴拉巴拉巴拉</div>
+                                                        <span class="departAddress" ng-bind="item.arriveaddr"></span>
+                                                    </div>
+                                                    <div class="row-no-padding ">
+                                                        <div class="lh30">
+                                                            <div class="marker small">集点上车</div>
+                                                            <!--<span class="f16 departTime pr5" ></span>-->
+                                                            <!--<div class="marker-self-adaption">返回</div>-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-40">
+                                                <div style="margin-bottom: 30px;" class="lh30 text-right assertive">
+                                                    <!--<div class="marker-self-adaption marker-self-adaption-assertive"></div>-->
+                                                    <span style="color: #f69028" class="price"><span class="f14">金额</span>{{item.price | number:0}}</span>
+                                                </div>
+                                                <div class="lh20 text-right assertive">
+                                                    <button style="min-height: 25px;font-size: 14px;line-height: 20px;border-radius: 2px;" class="button button-positive">预定</button>
+                                                    <!--<span class="price"><span class="f14">￥</span>{{item.monthprice | number:0}}</span>-->
+                                                </div>
+                                                <div class="lh30 text-right assertive"></div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </ion-pane>
+
+                    </ion-tab>
+
+                    <ion-tab title="点评" on-select="onTabSelected(2)">
+                        <ion-pane class="bus-pane" >
+                            <ul class="list" style="clear: both;">
+                                <li>
+                                    <a style="border-top-style: none;padding-left: 20px;"  class=" item item-thumbnail-left" href="">
+                                        <!--<img src="images/cover.jpg">-->
+                                        <div class="row row-no-padding">
+                                            <div class="col-60">
+                                                <div class="row-no-padding">
+                                                    <div class="lh30">
+
+                                                        <span class="departAddress" >名称</span>
+                                                    </div>
+                                                </div>
+                                                <div class="row-no-padding ">
+                                                    <div class="lh30">
+                                                        <div class="marker small">巴拉巴拉巴拉</div>
+                                                        <span class="departAddress" ng-bind="item.arriveaddr"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="row-no-padding ">
+                                                <div class="lh30">
+                                                <!--<div class="marker small"><i class="icon ion-ios-clock-outline positive f18"></i></div>-->
+                                                <span class="f16 departTime pr5" >★★★★★5.0分</span>
+
+                                                </div>
+                                                </div>
+                                            </div>
+                                            <!--<div class="col-40">-->
+                                                <!--<div class="lh30 text-right assertive">-->
+                                                    <!--<div class="marker-self-adaption marker-self-adaption-assertive"></div>-->
+                                                    <!--<span class="price"><span class="f14">金额</span>{{item.price | number:0}}</span>-->
+                                                <!--</div>-->
+                                                <!--<div class="lh30 text-right assertive">-->
+                                                    <!--<div class="marker-self-adaption marker-self-adaption-b-energized">惠</div>-->
+                                                    <!--<div class="marker-self-adaption marker-self-adaption-assertive">包月</div>-->
+                                                    <!--<span class="price"><span class="f14">￥</span>{{item.monthprice | number:0}}</span>-->
+                                                <!--</div>-->
+                                                <!--<div class="lh30 text-right assertive">-->
+                                                    <!--<div class="marker-self-adaption marker-self-adaption-b-energized">惠</div>-->
+                                                    <!--<div class="marker-self-adaption marker-self-adaption-assertive">包月</div>-->
+                                                    <!--<span class="price"><span class="f14">￥</span>{{item.monthprice | number:0}}</span>-->
+                                                <!--</div>-->
+                                                <!--<div class="text-right lh30 gray" ng-show="item.leftTickets>0">余 <span ng-bind="item.leftTickets"></span> 座</div>-->
+                                                <!--<div class="text-right lh30 gray" ng-show="item.leftTickets<=0">已售完</div>-->
+                                            <!--</div>-->
+                                        </div>
+                                        <!--<h2>Pretty Hate Machine</h2>-->
+                                        <!--<p>Nine Inch Nails</p>-->
+                                    </a>
+                                    <div class="item" style="padding: 0"></div>
+                                    <a style="border-top-style: none;padding-left: 20px;" class="item item-thumbnail-left" href="#">
+                                        <!--<img src="images/cover.jpg">-->
+                                        <div class="row row-no-padding">
+                                            <div class="col-60">
+                                                <div class="row-no-padding">
+                                                    <div class="lh30">
+
+                                                        <span class="departAddress" >名称</span>
+                                                    </div>
+                                                </div>
+                                                <div class="row-no-padding ">
+                                                    <div class="lh30">
+                                                        <div class="marker small">巴拉巴拉巴拉</div>
+                                                        <span class="departAddress" ng-bind="item.arriveaddr"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="row-no-padding ">
+                                                    <div class="lh30">
+                                                        <!--<div class="marker small"><i class="icon ion-ios-clock-outline positive f18"></i></div>-->
+                                                        <span class="f16 departTime pr5" >★★★★★5.0分</span>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <!--<div class="col-40">-->
+                                                <!--<div class="lh30 text-right assertive">-->
+                                                    <!--<div class="marker-self-adaption marker-self-adaption-assertive"></div>-->
+                                                    <!--<span class="price"><span class="f14">金额</span>{{item.price | number:0}}</span>-->
+                                                <!--</div>-->
+                                                <!--<div class="lh30 text-right assertive"></div>-->
+                                            <!--</div>-->
+                                        </div>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </ion-pane>
+                    </ion-tab>
+                    <ion-tab  title="须知" on-select="onTabSelected(3)">
+                        <ion-pane class="bus-pane">
+                            <ul class="list" style="clear: both;">
+                                <li>
+                                    <a style="border-top-style: none;padding-left: 20px;"  class=" item item-thumbnail-left" href="">
+                                        <!--<img src="images/cover.jpg">-->
+                                        <div class="row row-no-padding">
+                                            <div class="col-60">
+                                                <div class="row-no-padding">
+                                                    <div class="lh30">
+
+                                                        <span class="departAddress" >关于天气预报</span>
+                                                    </div>
+                                                </div>
+                                                <div class="row-no-padding ">
+                                                    <div class="lh30">
+                                                        <div class="marker small">巴拉巴拉巴拉</div>
+                                                        <span class="departAddress" ng-bind="item.arriveaddr"></span>
+                                                    </div>
+                                                </div>
+                                                <!--<div class="row-no-padding ">-->
+                                                <!--<div class="lh30">-->
+                                                <!--<div class="marker small"><i class="icon ion-ios-clock-outline positive f18"></i></div>-->
+                                                <!--<span class="f16 departTime pr5" ng-bind="item.arrivetime"></span>-->
+                                                <!--<div class="marker-self-adaption">返回</div>-->
+                                                <!--</div>-->
+                                                <!--</div>-->
+                                            </div>
+                                            <!--<div class="col-40">-->
+                                                <!--<div class="lh30 text-right assertive">-->
+                                                    <!--<div class="marker-self-adaption marker-self-adaption-assertive"></div>-->
+                                                    <!--<span class="price"><span class="f14">金额</span>{{item.price | number:0}}</span>-->
+                                                <!--</div>-->
+                                                <!--<div class="lh30 text-right assertive">-->
+                                                    <!--<div class="marker-self-adaption marker-self-adaption-b-energized">惠</div>-->
+                                                    <!--<div class="marker-self-adaption marker-self-adaption-assertive">包月</div>-->
+                                                    <!--<span class="price"><span class="f14">￥</span>{{item.monthprice | number:0}}</span>-->
+                                                <!--</div>-->
+                                                <!--<div class="text-right lh30 gray" ng-show="item.leftTickets>0">余 <span ng-bind="item.leftTickets"></span> 座</div>-->
+                                                <!--<div class="text-right lh30 gray" ng-show="item.leftTickets<=0">已售完</div>-->
+                                            <!--</div>-->
+                                        </div>
+                                        <!--<h2>Pretty Hate Machine</h2>-->
+                                        <!--<p>Nine Inch Nails</p>-->
+                                    </a>
+                                    <div class="item" style="padding: 0"></div>
+                                    <a style="border-top-style: none;padding-left: 20px;" class="item item-thumbnail-left" href="">
+                                        <!--<img src="images/cover.jpg">-->
+                                        <div class="row row-no-padding">
+                                            <div class="col-60">
+                                                <div class="row-no-padding">
+                                                    <div class="lh30">
+
+                                                        <span class="departAddress" >关于天气预报</span>
+                                                    </div>
+                                                </div>
+                                                <div class="row-no-padding ">
+                                                    <div class="lh30">
+                                                        <div class="marker small">巴拉巴拉巴拉</div>
+                                                        <span class="departAddress" ng-bind="item.arriveaddr"></span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <!--<div class="col-40">-->
+                                                <!--<div class="lh30 text-right assertive">-->
+                                                    <!--<div class="marker-self-adaption marker-self-adaption-assertive"></div>-->
+                                                    <!--<span class="price"><span class="f14">金额</span>{{item.price | number:0}}</span>-->
+                                                <!--</div>-->
+                                                <!--<div class="lh30 text-right assertive"></div>-->
+                                            <!--</div>-->
+                                        </div>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </ion-pane>
+                    </ion-tab>
+                </ion-tabs>
+
+            </div>
+
+
+
+            <!--<div style="padding: 0" class="row">-->
+                <!--<div class="col" style="padding: 0;line-height:44px;text-align: right;"><i  class="ion-location"  ></i></div><span style="font-size: 16px;line-height: 44px;"></span>-->
+                <!--<div style="line-height: 44px;" class="col col-80">巴拉巴拉巴拉</div>-->
+            <!--</div>-->
+
+
+
+
+        <!--<button class="button button-middle button-block  button-light" ng-click="getMoreData()" ng-show="showMoreBtn">点击加载更多</button>-->
+    </ion-content>
+    <!--<div class="bar bar-footer" ui-sref="create_route">-->
+    <!--<button class="button button-block button-positive button-balanced">发起我的新线路</button>-->
+    <!--</div>-->
+</ui-view>
