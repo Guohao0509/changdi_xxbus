@@ -1,6 +1,6 @@
 /**
- * @author 周快
- * @date 2016-10-13
+ * @author Guohao
+ * @date 2017-10-11
  * @version 1.0.0
  * @descriptions 针对排班管理的控制器
  */
@@ -117,6 +117,9 @@ app.controller('ScheduleEditController',function($rootScope,$scope,$http,$state,
     //更换临时route
     $scope.changeRoute= function(item){
         $scope.route=item;
+        $scope.routeEditMode = false;
+        $scope.driverEditMode = false;
+        $scope.busEditMode = false;
         /*查询经停靠点信息*/
         // $myHttpService.post('api/busline/queryBusline.htm',{lineid:$scope.route.lineid},function(data){
         //     $scope.stopStationList=data.stations;
@@ -140,11 +143,22 @@ app.controller('ScheduleEditController',function($rootScope,$scope,$http,$state,
 
     $scope.changeDriver= function(item){
         $scope.driver=item;
+        $scope.routeEditMode = false;
+        $scope.driverEditMode = false;
+        $scope.busEditMode = false;
     };
     $scope.changeBus= function(item){
         $scope.bus=item;
+        $scope.routeEditMode = false;
+        $scope.driverEditMode = false;
+        $scope.busEditMode = false;
     };
 
+    $scope.$watch('schedule.company', function(){
+        $scope.routeEditMode = false;
+        $scope.driverEditMode = false;
+        $scope.busEditMode = false;
+    })
 
     $scope.submit  = function(){
 
