@@ -271,8 +271,26 @@ app.controller('ScheduleDetailController',function($ionicPopup,$window,$rootScop
     /*
      * 每隔10s请求
      * */
-    var content="<div class='bus-image marker '></div>";
+    var content="<div class='bus-image marker'></div>";
     var marker;
+    $myHttpService.postNoLoad('api/busline/queryCarLocation',{carid:$scope.busSchedule.carid},function(data){
+        /*接收数据*/
+        // console.log(data)
+        //alert('lnglat:'+lnglat);
+        /*判断marker是否存在*/
+        if(!marker){
+            //创建一个地图对象
+            var marker = new AMap.Marker({
+                map: map,
+                position:[data.car.currlon,data.car.currlat],
+                content:content,
+                draggable:false
+            });
+        }else{
+            marker.setPosition($scope.lnglat.split(','));
+        }
+
+    })
     $interval(function(){
             $myHttpService.postNoLoad('api/busline/queryCarLocation',{carid:$scope.busSchedule.carid},function(data){
                 /*接收数据*/
