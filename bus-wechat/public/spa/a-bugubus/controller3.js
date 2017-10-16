@@ -266,35 +266,36 @@ app.controller('ScheduleDetailController',function($ionicPopup,$window,$rootScop
         //完成地图绘制
         //MapOperation.addMarkers( $scope.goSchedule.line.stations);
         MapOperation.drivingSearch($scope.busStations);
+        var content="<div class='bus-image marker'></div>";
+        var marker;
+        var carPosition = function(){
+            $myHttpService.postNoLoad('api/busline/queryCarLocation',{carid:$scope.busSchedule.carid},function(data){
+                /*接收数据*/
+                // console.log(data)
+                //alert('lnglat:'+lnglat);
+                /*判断marker是否存在*/
+                if(!marker){
+                    //创建一个地图对象
+                    var marker = new AMap.Marker({
+                        map: map,
+                        position:[data.car.currlon,data.car.currlat],
+                        content:content,
+                        draggable:false
+                    });
+                }else{
+                    marker.setPosition($scope.lnglat.split(','));
+                }
+
+            })
+        }
+        $interval(carPosition,10000);
+        carPosition();
     });
 
     /*
      * 每隔10s请求
      * */
-    var content="<div class='bus-image marker'></div>";
-    var marker;
-    var carPosition = function(){
-        $myHttpService.postNoLoad('api/busline/queryCarLocation',{carid:$scope.busSchedule.carid},function(data){
-            /*接收数据*/
-            // console.log(data)
-            //alert('lnglat:'+lnglat);
-            /*判断marker是否存在*/
-            if(!marker){
-                //创建一个地图对象
-                var marker = new AMap.Marker({
-                    map: map,
-                    position:[data.car.currlon,data.car.currlat],
-                    content:content,
-                    draggable:false
-                });
-            }else{
-                marker.setPosition($scope.lnglat.split(','));
-            }
-
-        })
-    }
-    $interval(carPosition,10000);
-    carPosition();
+    
 
     $scope.baoming = function(){
         //检查用户的登陆情况，没有登录则跳转到登录页
