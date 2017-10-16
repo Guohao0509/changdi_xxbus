@@ -1084,7 +1084,6 @@ var app = angular.module('app')
                 }else{
                     marker.setPosition($scope.lnglat.split(','));
                 }
-
             })
         },
         10000
