@@ -107,8 +107,9 @@ app.controller('IUserController',function($rootScope,$scope,$location,$state,$my
         $myHttpService.post("api/user/queryUserinfo",{
             userid:$rootScope.session.user.userInfo.userid
         },function(data){
+            data.user.userid = data.user.userid.slice(0, 4)+"****"+data.user.userid.slice(-4, data.user.userid.length);
             $scope.user = data.user;
-            // console.log(data);
+            console.log($scope.user);
         });
         $scope.editMode = false;
         $scope.editButtonText = "编辑";

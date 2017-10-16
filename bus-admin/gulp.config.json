@@ -7,7 +7,6 @@
 	"css":{},
 	"html":{},
 	"jsTask": [
-		"./public/vendor/jquery/jquery.min.js",
 		"./public/vendor/angular/angular.min.js",
 		"./public/vendor/angular/angular-animate/angular-animate.js",
 		"./public/vendor/angular/angular-cookies/angular-cookies.js",
