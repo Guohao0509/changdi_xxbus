@@ -21,7 +21,7 @@ app.controller('MapCtrl', ['$scope', function ($scope) {
 
     $scope.setZoomMessage = function (zoom) {
       $scope.zoomMessage = 'You just zoomed to ' + zoom + '!';
-      console.log(zoom, 'zoomed');
+      // console.log(zoom, 'zoomed');
     };
 
     $scope.openMarkerInfo = function (marker) {

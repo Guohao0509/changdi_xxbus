@@ -18,7 +18,7 @@ angular.module('app.directives').directive('ticket', function($document) {
                 car: scope.ticketInfo.platenum,
                 phone: scope.ticketInfo.sourcePhone
             }
-            console.log(ticket);
+            // console.log(ticket);
             var date = new Date(Number(ticket.date));
             var year = date.getFullYear();
             var month = date.getMonth() + 1;

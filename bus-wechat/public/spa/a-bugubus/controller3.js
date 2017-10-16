@@ -53,7 +53,7 @@ app.controller('LoginController',function($rootScope,$scope,$state,$stateParams,
         })
         nextLogin = function(haveUser){
             var checkcode = $scope.user.mobile%($scope.user.mobile.toString().substr(1,3));
-            console.log($scope.user.mobile);
+            // console.log($scope.user.mobile);
             $myHttpService.post("api/utils/sendAuthcode", {
                 phone:$scope.user.mobile,
                 servicename:"WechatUserLogin",
@@ -91,7 +91,7 @@ app.controller('LoginController',function($rootScope,$scope,$state,$stateParams,
             $rootScope.session.user.userInfo = data.user;
             //登录后检查重定向路径，重定向到登陆前的路径
             if($stateParams.url){
-                console.log($stateParams.url);
+                // console.log($stateParams.url);
                 $location.url($stateParams.url).replace();
             }else{
                 $location.url("/app/buy").replace();
@@ -103,12 +103,12 @@ app.controller('LoginController',function($rootScope,$scope,$state,$stateParams,
 app.controller('IUserController',function($rootScope,$scope,$location,$state,$myHttpService){
         $scope.user = {};
         $scope.tempUser = {};
-        console.log($rootScope.session.user.userInfo.userid);
+        // console.log($rootScope.session.user.userInfo.userid);
         $myHttpService.post("api/user/queryUserinfo",{
             userid:$rootScope.session.user.userInfo.userid
         },function(data){
             $scope.user = data.user;
-            console.log(data);
+            // console.log(data);
         });
         $scope.editMode = false;
         $scope.editButtonText = "编辑";
@@ -241,7 +241,7 @@ app.controller('ScheduleDetailController',function($ionicPopup,$window,$rootScop
     },function(data){
         $scope.busSchedule = data.busSchedule;
         $scope.busStations = data.busStations;
-        console.log($scope.busStations)
+        // console.log($scope.busStations)
         //此处进行网络请求，并创建地图
         map = new AMap.Map("J_map_canvas",{
             zoom:14,
@@ -276,7 +276,7 @@ app.controller('ScheduleDetailController',function($ionicPopup,$window,$rootScop
     $interval(function(){
             $myHttpService.postNoLoad('api/busline/queryCarLocation',{carid:$scope.busSchedule.carid},function(data){
                 /*接收数据*/
-                console.log(data)
+                // console.log(data)
                 //alert('lnglat:'+lnglat);
                 /*判断marker是否存在*/
                 if(!marker){
@@ -440,7 +440,7 @@ app.controller('ScheduleOpenedController',function($rootScope,$scope,$state,$myH
                 pagesize:$scope.pagesize,
                 company: '2017092210022499480058'
             },function(data){
-                console.log("关于已开通路线:"+JSON.stringify(data));
+                // console.log("关于已开通路线:"+JSON.stringify(data));
                 $scope.totalnum = data.totalnum;
                 if($scope.totalnum-($scope.offset+$scope.pagesize)>0){
                     $scope.showMoreBtn  = true;

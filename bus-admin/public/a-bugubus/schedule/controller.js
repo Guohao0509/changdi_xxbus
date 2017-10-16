@@ -221,7 +221,7 @@ app.controller('ScheduleListController',function($rootScope,$scope,$http,$state,
         searchFormId:"J_search_form",
         listUrl:"api/buslineSchedule/queryBuslineScheduleByKeyword.htm",
         callback: function(scope,data){
-            console.log(data);
+            // console.log(data);
         }
     };
     $tableListService.init($scope, options);

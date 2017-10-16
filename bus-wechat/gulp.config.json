@@ -1,14 +1,13 @@
 {
 	"entry": "public",
 	"output": "build",
+	"output2": "build/spa",
 	"js": {
 		"mangle": false
 	},
 	"css":{},
 	"html":{},
 	"jsTask": [
-		"./public/spa/lib/layer_mobile/layer.js",
-		"./public/spa/lib/ionic/js/ionic.bundle.min.js",
 		"./public/spa/lib/ion-datetime-picker-master/release/ion-datetime-picker.min.js",
 		"./public/spa/a-bugubus/route.js",
 		"./public/spa/a-bugubus/controller3.js",
@@ -16,7 +15,6 @@
 		"./public/spa/a-bugubus/service.js"
 	],
 	"cssTask": [
-		"./public/spa/lib/ionic/css/ionic.min.css",
 		"./public/spa/lib/ion-datetime-picker-master/release/ion-datetime-picker.min.css",
 		"./public/spa/css/app.css"
 	]

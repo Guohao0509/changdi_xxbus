@@ -67,7 +67,7 @@ app.controller('DriverEditController',function($tableListService,$rootScope,$sco
         
         $scope.submit = function(){
             //提交表单到服务器地址
-            console.log($scope.driver);
+            // console.log($scope.driver);
             $myHttpService.post("api/driver/updateDriverInfo.htm",$scope.driver,function(data){
                 layer.msg("修改成功！",{offset: '100px'});
                 // $timeout(function(){
@@ -103,7 +103,7 @@ app.controller('DriverEditController',function($tableListService,$rootScope,$sco
         //提交添加司机的表单
         $scope.submit = function(){
             //提交表单到服务器地址
-            console.log($scope.driver);
+            // console.log($scope.driver);
             $myHttpService.post("api/driver/insertDriver.htm",$scope.driver,function(data){
                 layer.msg("添加成功！",{offset: '100px'})
                 $state.go("app.driver.add",{},{reload:true});

@@ -188,9 +188,9 @@ gulp.task('build', function() {
   	gulp.src(config.jsTask)
   		.pipe(uglify(finalConfig.js))
     	.pipe(concat('bundle.js'))
-    	.pipe(gulp.dest(config.output));
+    	.pipe(gulp.dest(config.output2));
 	gulp.src(config.cssTask)
 		.pipe(cssMin(finalConfig.css))
     	.pipe(concat('bundle.css'))
-    	.pipe(gulp.dest(config.output));
+    	.pipe(gulp.dest(config.output2));
 });

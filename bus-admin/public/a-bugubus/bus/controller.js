@@ -76,7 +76,7 @@ app.controller('BusEditController',function($tableListService,$rootScope,$scope,
             }else if($scope.bus.cartype == '3'){
                 $scope.bus.seatnum = 13
             }
-            console.log($scope.bus)
+            // console.log($scope.bus)
             $myHttpService.post("api/car/insertCarinfo.htm",$scope.bus,function(data){
                 $scope.submiting = false;
                 layer.msg("添加成功！",{offset: '100px'});
@@ -121,7 +121,7 @@ app.controller('BusListController',function($rootScope,$scope,$http,$state,$loca
     }
     $tableListService.init($scope, options);
     $tableListService.get();
-    console.log($scope);
+    // console.log($scope);
 });
 app.controller('BusPositionController', function($scope, $rootScope,$stateParams) {
     //根据车辆的id获取位置信息，先判断obd状态，如果obd状态为不正常，先唤醒obd，在获取位置信息

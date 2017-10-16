@@ -15,7 +15,7 @@ angular.module('app.service',[])
                 }else{
                     if(layer){
                         layer.alert(JSON.stringify(data));
-                        console.log(data)
+                        // console.log(data)
                     }else{
                         alert(JSON.stringify(data));
                     }
@@ -108,7 +108,7 @@ angular.module('app.service',[])
                     $localStorage.pageSize = $scopeLocal.pageRequest.pageSize;
                 }
                 var requestData = $("#" + options.searchFormId).serialize().replace(/\+/g, "");
-                console.log(requestData)
+                // console.log(requestData)
                 var offset = ($scopeLocal.pageRequest.pageNum-1)*$scopeLocal.pageRequest.pageSize;
                 if(option.size){
                     $scopeLocal.pageRequest.pageSize = option.size;

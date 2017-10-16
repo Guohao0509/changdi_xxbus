@@ -5,7 +5,7 @@ app.controller('companyListController', ['$scope','$http','$myHttpService','$tab
     };
     $tableListService.init($scope, options);
     $tableListService.get();
-    console.log($scope);
+    // console.log($scope);
     $scope.delete = function(unitid){
 		layer.confirm('您确定要删除吗？', {icon: 3, title:'提示'},function(){
 			var reqParam = {
@@ -26,7 +26,7 @@ app.controller('addCompanyController', ['$scope','$myHttpService', '$state','md5
 			unitName: $scope.unitName,
 		}
         $myHttpService.post('api/unit/insertUnit', reqParam, function(data){
-            console.log(data)
+            // console.log(data)
             layer.msg(data.msg,{offset: '100px'});
             $state.go('app.company.add',{},{reload: true});
         }, function(){

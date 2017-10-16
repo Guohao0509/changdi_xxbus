@@ -19,7 +19,7 @@ app.controller('userListController',function($rootScope,$scope,$http,$state,$loc
     };
     $tableListService.init($scope, options);
     $tableListService.get();
-    console.log($scope);
+    // console.log($scope);
     //查询注册时间
     $scope.useregtime = {
         opened:false,
@@ -136,7 +136,7 @@ app.controller('userEditController',['$scope','$myHttpService','$tableListServic
             if(!$scope.user.sex){
                 reqParam.sex = '0';
             }
-            console.log(reqParam)
+            // console.log(reqParam)
             
             $myHttpService.post("api/user/updateUserinfo",reqParam,function(data){
                 layer.msg('编辑用户成功');
@@ -249,8 +249,8 @@ app.controller('usersAddController',['$scope','$myHttpService','$tableListServic
         $scope.users = {company: '0'}
     }
     $scope.submit = function(){
-        console.log($scope.usersData == null)
-        console.log($scope.haveErr)
+        // console.log($scope.usersData == null)
+        // console.log($scope.haveErr)
         
         if($scope.usersData.length <= 0 || $scope.haveErr){
             layer.msg('您上传的表格数据有误，请修改后重新上传')
@@ -260,7 +260,7 @@ app.controller('usersAddController',['$scope','$myHttpService','$tableListServic
         var reqParam = {
             users: $scope.usersData
         };
-        console.log(JSON.stringify(reqParam))
+        // console.log(JSON.stringify(reqParam))
         $myHttpService.post("api/user/insertUserInfoList",{data: JSON.stringify(reqParam)},function(data){
             layer.msg('添加用户成功');
             $scope.submiting = false;    
