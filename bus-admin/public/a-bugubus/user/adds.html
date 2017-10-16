@@ -52,7 +52,7 @@
                                     </thead>
                                     <tbody>
                                         <tr ng-repeat="item in usersData track by $index"  ng-class="{'text-danger': item.error}">
-                                            <td ng-class=>{{$index+1}}</td>
+                                            <td>{{$index+1}}</td>
                                             <td ng-bind="item.username" ></td>
                                             <td>
                                                 <span ng-show="item.sex=='0'" >男</span>

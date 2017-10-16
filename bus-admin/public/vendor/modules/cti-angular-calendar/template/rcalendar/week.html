@@ -36,7 +36,7 @@
             <tbody>
             <tr ng-repeat="row in rows track by $index">
                 <td class="calendar-hour-column text-right">
-                    {{$index<12?($index === 0?12:$index)+'am':($index === 12?$index:$index-12)+'pm'}}
+                    <!-- {{$index<12?($index === 0?12:$index)+'am':($index === 12?$index:$index-12)+'pm'}} -->
                 </td>
                 <td ng-repeat="tm in row track by tm.time" class="calendar-cell">
                     <div ng-class="{'calendar-event-wrap': tm.events}" ng-if="tm.events">

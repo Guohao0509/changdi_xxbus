@@ -30,7 +30,7 @@ app.use(session({
   rolling: true
 }));
 //设置浏览器缓存
-app.use(express.static(path.join(__dirname, 'public'),[{
+app.use(express.static(path.join(__dirname, 'build'),[{
   dotfiles: 'ignore',
   etag: false,
   extensions: ['css','png','gif','jpg','js'],
