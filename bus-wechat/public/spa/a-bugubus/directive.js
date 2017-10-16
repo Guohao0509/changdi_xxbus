@@ -55,6 +55,12 @@ app.filter('transfer',function(){
 
     }
 });
+
+app.filter('idFilter',function(){
+    return function(input){
+        return input.slice(0, 4)+"****"+input.slice(-4, input.length);
+    }
+});
 /*滑动*/
 app.directive('touch',function(){
     return {
