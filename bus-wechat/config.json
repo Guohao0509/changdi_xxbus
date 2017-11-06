@@ -1,5 +1,5 @@
 {
-  "host": "http://119.29.152.80:8080",
+  "host": "http://192.168.5.223:8080",
   "domain": "http://119.29.152.80:3000",
-  "projectName": "bubus"
+  "projectName": "bus"
 }

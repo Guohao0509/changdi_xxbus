@@ -38,7 +38,7 @@ router.get('/spa/getUserInfoByCode', function(req, res, next) {
         var result = JSON.parse(data).data;
         //将用户信息放到session
         req.session.user= {
-            openId: result.user.openid,
+            openId: result.openid,
             userInfo:result.user
         }
 
