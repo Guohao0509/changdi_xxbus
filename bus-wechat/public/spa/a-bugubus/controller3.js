@@ -437,7 +437,7 @@ app.controller('ScheduleOpenedController',function($rootScope,$scope,$state,$myH
             $myHttpService.post('api/busline/queryCycleBuslines',{
                 offset:$scope.offset,
                 pagesize:$scope.pagesize,
-                company: '2017092210022499480058'
+                // company: '2017092210022499480058'
             },function(data){
                 // console.log("关于已开通路线:"+JSON.stringify(data));
                 $scope.totalnum = data.totalnum;
@@ -461,7 +461,7 @@ app.controller('ScheduleOpenedController',function($rootScope,$scope,$state,$myH
             $myHttpService.postNoLoad('api/busline/queryCycleBuslines',{
                 offset:$scope.offset,
                 pagesize:$scope.pagesize,
-                company: '2017092210022499480058'
+                // company: '2017092210022499480058'
             },function(data){
                 $scope.totalnum = data.totalnum;
                 if($scope.totalnum-($scope.offset+$scope.pagesize)>0){

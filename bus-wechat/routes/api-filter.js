@@ -5,6 +5,12 @@ var filter = function(req,res,next){
   var url = req.originalUrl;//var url = req._parsedUrl.pathname;  截取完整目录名
   //截取请求网关后的目录名
   var serviceUrl =url.substring("/spa/api".length,url.length);
+  var busUrl = 'api/busline/queryCycleBuslines';
+  if(req.originalUrl.indexOf(busUrl) != -1){
+    console.log('****************************************************************************************');
+    console.log(res.session.user);
+    res.body.campany = res.session.userInfo.company;
+  }
   httpProxy(serviceUrl,req.body,function(data){
     res.send(data);
     res.end();
