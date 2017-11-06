@@ -10,7 +10,7 @@ var filter = function(req,res,next){
     req.body.company = res.session.user.userInfo.company;
   }
   httpProxy(serviceUrl,req.body,function(data){
-    res.send(req.body);
+    res.send(data);
     res.end();
   },function(data){
     res.send(data);
