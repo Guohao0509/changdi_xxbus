@@ -127,6 +127,7 @@ app.controller('userEditController',['$scope','$myHttpService','$tableListServic
        
         $scope.submit = function(){
             var reqParam = {
+                userid: $stateParams.id,
                 username: $scope.user.username,
                 sex: $scope.user.sex,
                 company: $scope.user.company,
@@ -137,7 +138,7 @@ app.controller('userEditController',['$scope','$myHttpService','$tableListServic
                 reqParam.sex = '0';
             }
             // console.log(reqParam)
-            
+            console.log(reqParam)
             $myHttpService.post("api/user/updateUserinfo",reqParam,function(data){
                 layer.msg('编辑用户成功');
                 $state.go("app.user.user_list",{},{reload: true});

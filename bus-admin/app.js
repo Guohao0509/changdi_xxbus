@@ -53,7 +53,7 @@ app.use(session({
   rolling: true
 }));
 //app.use('/',index);
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, 'public')));
 // app.use('/image',imageFilter);
 app.use('/auth',authFilter);
 // app.use('/files',filesFilter);
