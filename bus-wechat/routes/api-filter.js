@@ -9,7 +9,7 @@ var filter = function(req,res,next){
   if(req.originalUrl.indexOf(busUrl) != -1){
     console.log('****************************************************************************************');
     console.log(res.session.user);
-    res.body.campany = res.session.userInfo.company;
+    res.body.company = res.session.userInfo.company;
   }
   httpProxy(serviceUrl,req.body,function(data){
     res.send(data);
