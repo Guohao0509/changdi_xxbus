@@ -82,6 +82,8 @@ app.controller('LoginController',function($rootScope,$scope,$state,$stateParams,
     }
 
     $scope.next= function(){
+        alert(JSON.stringify($scope.user));
+        alert(JSON.stringify($rootScope.session.user));
         $myHttpService.post("auth/login",{
             phone:$scope.user.mobile,
             authcode:$scope.user.authcode,
