@@ -7,8 +7,6 @@ var filter = function(req,res,next){
   var serviceUrl =url.substring("/spa/api".length,url.length);
   var busUrl = 'api/busline/queryCycleBuslines';
   if(req.originalUrl.indexOf(busUrl) != -1){
-    console.log('****************************************************************************************');
-    console.log(res.session.user);
     res.body.company = res.session.userInfo.company;
   }
   httpProxy(serviceUrl,req.body,function(data){
