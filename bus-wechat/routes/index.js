@@ -29,7 +29,7 @@ router.get('/spa/index', function(req, res, next) {
         res.redirect(wechatUrl.replace('MyUrl',url));
     }
     res.render('index',{
-        "user":req.session.user.userInfo,
+        "user":req.session.user,
         "version":"201611062153"
     });
 });
