@@ -63,7 +63,7 @@ app.controller('LoginController',function($rootScope,$scope,$state,$stateParams,
                 $scope.first = false;
                 $scope.sendStatus = false;
                 var count = 60;
-                $scope.sendButtonText = count+"s后获取"
+                $scope.sendButtonText = count+"s后获取";
                 var timer = window.setInterval(function(){
                     if(count>0){
                         count--;
@@ -82,8 +82,6 @@ app.controller('LoginController',function($rootScope,$scope,$state,$stateParams,
     }
 
     $scope.next= function(){
-        alert(JSON.stringify($scope.user));
-        alert(JSON.stringify($rootScope.session.user));
         $myHttpService.post("auth/login",{
             phone:$scope.user.mobile,
             authcode:$scope.user.authcode,
