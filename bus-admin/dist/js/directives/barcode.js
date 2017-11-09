@@ -1,0 +1,1 @@
+angular.module("app.directives").directive("barcode",function(){return{link:function(scope,element,attrs){var id="J_barcode"+(new Date).getTime();element[0].id=id,JsBarcode("#"+id,scope.$parent.$eval(attrs.ngModel)),scope.$watch(attrs.ngModel,function(newValue){JsBarcode("#"+id,newValue)})}}});

@@ -184,16 +184,20 @@ app.controller('ScheduleDetailController',function($ionicPopup,$window,$rootScop
         //添加点到地图上面
         addMarkers:function(buslines){
             for(var i = 0,len = buslines.length;i<len;i++){
-                var text = "<div class='marker station-marker'>"+i+"</div>";
+                var icon;
                 if(i==0){
-                    text="<div class='marker start-marker'>起</div>";
+                    icon='http://webapi.amap.com/theme/v1.3/markers/n/start.png';
                 }else if(i==len-1){
-                    text="<div class='marker stop-marker'>终</div>";
+                    icon='http://webapi.amap.com/theme/v1.3/markers/n/end.png';
+                }else if(buslines[i].stationType == 1){
+                    icon = 'http://webapi.amap.com/theme/v1.3/markers/n/mid.png';
+                }else{
+                    continue;
                 }
                 var marker = new AMap.Marker({
                     map: map,
-                    position:new AMap.LngLat(buslines[i].lng,buslines[i].lat),
-                    content:text,
+                    position:new AMap.LngLat(buslines[i].stalongitude,buslines[i].stalatitude),
+                    icon:icon,
                     extData:buslines[i],
                     draggable:false
                 });
@@ -260,11 +264,14 @@ app.controller('ScheduleDetailController',function($ionicPopup,$window,$rootScop
             });
         //设置驾车导航
         drving = new AMap.Driving({
-            map: map
+            map: map,
+            hideMarkers: true
         });
         //完成数据封装
         //完成地图绘制
-        //MapOperation.addMarkers( $scope.goSchedule.line.stations);
+        // MapOperation.addMarkers( $scope.goSchedule.line.stations);
+        console.log($scope.busStations)
+        MapOperation.addMarkers($scope.busStations);
         MapOperation.drivingSearch($scope.busStations);
     });
 
@@ -272,15 +279,16 @@ app.controller('ScheduleDetailController',function($ionicPopup,$window,$rootScop
      * 每隔10s请求
      * */
     var content="<div class='bus-image marker'></div>";
-    var marker;
+    var carMmarker;
     var carPosition = function(){
         $myHttpService.postNoLoad('api/busline/queryCarLocation',{carid:$scope.busSchedule.carid},function(data){
             /*接收数据*/
             // console.log(data)
             //alert('lnglat:'+lnglat);
             /*判断marker是否存在*/
-            if(!marker){
+            if(!carMmarker){
                 //创建一个地图对象
+                console.log('marker不存在, new marker')
                 var marker = new AMap.Marker({
                     map: map,
                     position:[data.car.currlon,data.car.currlat],
@@ -288,7 +296,7 @@ app.controller('ScheduleDetailController',function($ionicPopup,$window,$rootScop
                     draggable:false
                 });
             }else{
-                marker.setPosition($scope.lnglat.split(','));
+                carMmarker.setPosition([data.car.currlon,data.car.currlat]);
             }
 
         })
@@ -437,7 +445,7 @@ app.controller('ScheduleOpenedController',function($rootScope,$scope,$state,$myH
             $myHttpService.post('api/busline/queryCycleBuslines',{
                 offset:$scope.offset,
                 pagesize:$scope.pagesize,
-                // company: '2017092210022499480058'
+                company:window.global.config.user.userInfo.company
             },function(data){
                 // console.log("关于已开通路线:"+JSON.stringify(data));
                 $scope.totalnum = data.totalnum;
@@ -461,7 +469,7 @@ app.controller('ScheduleOpenedController',function($rootScope,$scope,$state,$myH
             $myHttpService.postNoLoad('api/busline/queryCycleBuslines',{
                 offset:$scope.offset,
                 pagesize:$scope.pagesize,
-                // company: '2017092210022499480058'
+                company:window.global.config.user.userInfo.company
             },function(data){
                 $scope.totalnum = data.totalnum;
                 if($scope.totalnum-($scope.offset+$scope.pagesize)>0){

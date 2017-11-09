@@ -26,6 +26,7 @@ app.controller('RouteEditController',function($tableListService,$compile,$rootSc
                     $scope.busline = data.busline;
                     var stations = data.stations;
                     for(var i = 0;i<stations.length;i++){
+                        console.log(stations[i].stationType);
                         $scope.buslineStations.push({
                             lineid:stations[i].lineid,
                             stationId:stations[i].stationid,
@@ -33,6 +34,7 @@ app.controller('RouteEditController',function($tableListService,$compile,$rootSc
                             lng:stations[i].stalongitude,
                             lat:stations[i].stalatitude,
                             drivingTime:stations[i].drivingtime,
+                            stationType:stations[i].stationType
                         })
                     };
                     window.setTimeout(function(){
@@ -141,16 +143,18 @@ app.controller('RouteEditController',function($tableListService,$compile,$rootSc
                 // lnglatXY.push(MapOperation.contextMenuPositon.getLat());
                 var busline = {
                     "stationId":new Date().getTime()+""+ (Math.floor(Math.random () * 9000) + 1000),
-                    "stationName": '新建站点',
+                    "stationName": '新建站点'+len,
                     "lng":MapOperation.contextMenuPositon.getLng(),
                     "lat":MapOperation.contextMenuPositon.getLat(),
                     "drivingTime":0,
                     "editMode":true,
                     "drivetime":$scope.busline.drivetime,
-                    "drivedistance":$scope.busline.drivedistance
+                    "drivedistance":$scope.busline.drivedistance,
+                    "stationType": 1
                 };
                 if(len>1){
                     $scope.buslineStations.splice(len-1, 0, busline);
+                    busline.stationType = 0;
                 }else{
                     $scope.buslineStations.push(busline);
                 }
@@ -270,10 +274,12 @@ app.controller('RouteEditController',function($tableListService,$compile,$rootSc
             "drivingTime":0,
             "editMode":true,
             "drivetime":$scope.busline.drivetime,
-            "drivedistance":$scope.busline.drivedistance
+            "drivedistance":$scope.busline.drivedistance,
+            "stationType":1
         }
         if(len>1){
             $scope.buslineStations.splice(len-1, 0, busline);
+            busline.stationType = 0;
         }else{
             $scope.buslineStations.push(busline);
         }
@@ -342,7 +348,8 @@ app.controller('RouteEditController',function($tableListService,$compile,$rootSc
                     stalongitude:$scope.buslineStations[i].lng,
                     stalatitude:$scope.buslineStations[i].lat,
                     drivingtime:$scope.buslineStations[i].drivingTime,
-                    serialno:i
+                    serialno:i,
+                    stationType: $scope.buslineStations[i].stationType
                     //drivetime:$scope.buslineStations[i].drivetime,
                     //drivedistance:$scope.buslineStations[i].drivedistance
                 });
@@ -364,6 +371,7 @@ app.controller('RouteEditController',function($tableListService,$compile,$rootSc
                 layer.msg("线路信息未经过修改");
                 return;
             }
+            console.log(JSON.stringify(data))
             if($scope.editMode&&!saveMode){
                 $myHttpService.post("api/busline/updateBuslineInfo.htm",{data:JSON.stringify(data)},function(){
                     layer.msg("修改成功！",{offset: '100px'})

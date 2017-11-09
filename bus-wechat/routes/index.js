@@ -11,21 +11,22 @@ router.get('/spa', function(req, res, next) {
 router.get('/spa/index', function(req, res, next) {
     // req.session.user={
     //     "userInfo":{
-    //         "userid":"2017101015195773012372",
-    //         "phone":"13016487540",
+    //         "userid":"2017092515072014303499",
+    //         "phone":"13419565194",
     //         "sex":"0",
     //         "userStatus":1,
     //         "balance":0.0,
-    //         "openid":"osvsPw4_JbCNjxGZyZ4lj-0rhK2c",
+    //         "openid":"osvsPw-p_EBAoWph2u37LiAIQvTc",
     //         "talSpendind":0.0,
     //         "tripCount":0,
-    //         "type":0
+    //         "type":0,
+    //         "company":"2017092210022499480058"
     //     }
     // };
     if(req.session.user==undefined){
         //如果没有用户信息，那么重定向来获取用户信息
         var wechatUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6273f7375e3bb46d&redirect_uri=MyUrl&response_type=code&scope=snsapi_base&state=123#wechat_redirect";
-        var url = encodeURIComponent("http://xxbus.forku.cn/spa/getUserInfoByCode?return="+req.query.return);
+        var url = encodeURIComponent("http://bashi.happyev.com/spa/getUserInfoByCode?return="+req.query.return);
         res.redirect(wechatUrl.replace('MyUrl',url));
     }
     res.render('index',{
