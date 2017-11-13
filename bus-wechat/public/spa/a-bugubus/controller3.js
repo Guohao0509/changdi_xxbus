@@ -32,6 +32,14 @@ app.controller('AppController',function($rootScope,$scope,$state,$ionicViewSwitc
 });
 
 app.controller('LoginController',function($rootScope,$scope,$state,$stateParams,$ionicViewSwitcher,$myHttpService,$location){
+    
+    $myHttpService.post("api/unit/queryUnitNameList",{},function(data){
+        $scope.companys = data.units;
+        console.log(data.units)
+    },function(e){
+        console.log(e)
+    })
+
     if($stateParams.url){
         $scope.showTip =true;
         $scope.tips = "请先验证您的手机号";
@@ -78,14 +86,14 @@ app.controller('LoginController',function($rootScope,$scope,$state,$stateParams,
                 },1000);
             });
         }
-        
     }
 
     $scope.next= function(){
         $myHttpService.post("auth/login",{
             phone:$scope.user.mobile,
             authcode:$scope.user.authcode,
-            openid:$rootScope.session.user.openId
+            openid:$rootScope.session.user.openId,
+            company:$scope.selectedComp
         },function(data){
             //登录成功，更新session
             $rootScope.session.user.userInfo = data.user;
