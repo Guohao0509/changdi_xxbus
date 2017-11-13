@@ -32,7 +32,7 @@ app.controller('AppController',function($rootScope,$scope,$state,$ionicViewSwitc
 });
 
 app.controller('LoginController',function($rootScope,$scope,$state,$stateParams,$ionicViewSwitcher,$myHttpService,$location){
-    
+
     $myHttpService.post("api/unit/queryUnitNameList",{},function(data){
         $scope.companys = data.units;
         console.log(data.units)
@@ -52,13 +52,13 @@ app.controller('LoginController',function($rootScope,$scope,$state,$stateParams,
         $scope.sendStatus =true;
     $scope.sendCode = function(){
         //对参数做预处理
-        $myHttpService.post("api/user/queryUserByPhone",{
-            phone: $scope.user.mobile
-        },function(data){
-            if(!!data.user.userid){
-                nextLogin();
-            }
-        })
+        // $myHttpService.post("api/user/queryUserByPhone",{
+        //     phone: $scope.user.mobile
+        // },function(data){
+        //     if(!!data.user.userid){
+        //         nextLogin();
+        //     }
+        // })
         nextLogin = function(haveUser){
             var checkcode = $scope.user.mobile%($scope.user.mobile.toString().substr(1,3));
             // console.log($scope.user.mobile);
@@ -86,6 +86,7 @@ app.controller('LoginController',function($rootScope,$scope,$state,$stateParams,
                 },1000);
             });
         }
+        nextLogin();
     }
 
     $scope.next= function(){
