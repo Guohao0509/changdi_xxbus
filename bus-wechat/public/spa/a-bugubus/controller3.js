@@ -90,7 +90,10 @@ app.controller('LoginController',function($rootScope,$scope,$state,$stateParams,
     }
 
     $scope.next= function(){
-        console.log($scope.user.selectedComp)
+        if($scope.user.selectedComp == 0){
+            layer.msg("请选择您所在的公司");
+            return;
+        }
         $myHttpService.post("auth/login",{
             phone:$scope.user.mobile,
             authcode:$scope.user.authcode,
