@@ -27,14 +27,6 @@ app
                         $state.go('auth.login');
                     }else{
                         $rootScope.session_user = data;
-                        if(data.havePower=='0'){
-                            localStorage.setItem('guilvbus_h_p',data.havePower);
-                            localStorage.setItem('guilvbus_t_s',data.ticketSource);
-                            $rootScope.havePower_user = false;
-                            $rootScope.ticketSource_user = data.ticketSource;
-                        }else{
-                            $rootScope.havePower_user = true;
-                        }
                     }
                 });
             }
@@ -48,8 +40,6 @@ app
             $myHttpService.get("auth/logout",{},function(data){
                 $rootScope.session_user=undefined;
                 $state.go('auth.login');
-                localStorage.removeItem('guilvbus_h_p');
-                localStorage.removeItem('guilvbus_t_s');
             });
         }
         // $(function(){
