@@ -20,11 +20,11 @@
             </div>
         </form>
         <div class="list" ng-show="!first">
-            <label class="item item-input item-select" style="border: none;padding: 10px;">
+            <label class="item item-input item-select" style="border: none;padding: 10px;" data-tap-disabled="true">
                 <div class="input-label" style="padding: 6px 0 5px 16px">
                     公司
                 </div>
-                <select ng-model="selectedComp" ng-init="selectedComp = '0'">
+                <select  ng-init="user.selectedComp = '0'" ng-model="user.selectedComp">
                     <option value="0" style="display: none">请选择您所在的公司</option>
                     <option ng-repeat="item in companys" value="{{item.unitid}}">{{item.unitName}}</option>
                 </select>

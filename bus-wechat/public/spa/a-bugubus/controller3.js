@@ -90,11 +90,12 @@ app.controller('LoginController',function($rootScope,$scope,$state,$stateParams,
     }
 
     $scope.next= function(){
+        console.log($scope.user.selectedComp)
         $myHttpService.post("auth/login",{
             phone:$scope.user.mobile,
             authcode:$scope.user.authcode,
             openid:$rootScope.session.user.openId,
-            company:$scope.selectedComp
+            company:$scope.user.selectedComp
         },function(data){
             //登录成功，更新session
             $rootScope.session.user.userInfo = data.user;
