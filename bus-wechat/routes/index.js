@@ -40,10 +40,10 @@ router.get('/spa/index', function(req, res, next) {
             //     res.session.user = null;
             //     res.redirect('/spa/index?');
             // }else{
-            //     res.render('index',{
-            //         "user":req.session.user,
-            //         "version":"201611062153"
-            //     });
+                res.render('index',{
+                    "user":req.session.user,
+                    "version":"201611062153"
+                });
             // }
         }, function(err){
             res.send(err);
