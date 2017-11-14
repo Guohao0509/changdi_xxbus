@@ -31,6 +31,7 @@ router.get('/spa/index', function(req, res, next) {
     }else{
         httpProxy('/user/queryUserinfo',{userid: req.session.user.userInfo.userid},function(body){
             var data = body.data;
+            console.log("+++++++++++++++");
             console.log(body);
             if(!data.flag){
                 console.log(11111111111)
