@@ -38,6 +38,7 @@
                 <ul class="station-list">
                     <li class="station-list-item"
                         ng-repeat="item in busStations"
+                        ng-show="item.stationType == 1"
                         ng-click = "RideactiveStations($index)"
                         ng-class="{active:item.active}"
                         >

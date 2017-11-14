@@ -292,24 +292,26 @@ app.controller('ScheduleDetailController',function($ionicPopup,$window,$rootScop
      * 每隔10s请求
      * */
     var content="<div class='bus-image marker'></div>";
-    var carMmarker;
+    var carMarkerFlag = false, carMarker;
     var carPosition = function(){
         $myHttpService.postNoLoad('api/busline/queryCarLocation',{carid:$scope.busSchedule.carid},function(data){
             /*接收数据*/
             // console.log(data)
             //alert('lnglat:'+lnglat);
             /*判断marker是否存在*/
-            if(!carMmarker){
+            if(!carMarkerFlag){
                 //创建一个地图对象
+                carMarkerFlag = true;
                 console.log('marker不存在, new marker')
-                var marker = new AMap.Marker({
+                carMarker = new AMap.Marker({
                     map: map,
                     position:[data.car.currlon,data.car.currlat],
                     content:content,
                     draggable:false
                 });
             }else{
-                carMmarker.setPosition([data.car.currlon,data.car.currlat]);
+                console.log('ser Marker');
+                carMarker.setPosition([data.car.currlon,data.car.currlat]);
             }
 
         })
