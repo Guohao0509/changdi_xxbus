@@ -39,16 +39,17 @@ router.get('/spa/index', function(req, res, next) {
             ){
                 res.session.user = null;
                 res.redirect('/spa/index?');
+            }else{
+                res.render('index',{
+                    "user":req.session.user,
+                    "version":"201611062153"
+                });
             }
         }, function(err){
             res.send(err);
             res.end();
         })
     }
-    res.render('index',{
-        "user":req.session.user,
-        "version":"201611062153"
-    });
 });
 router.get('/spa/getUserInfoByCode', function(req, res, next) {
     httpProxy("/user/getUserOpenid",{code:req.query.code},function(data){
