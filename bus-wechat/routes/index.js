@@ -30,7 +30,7 @@ router.get('/spa/index', function(req, res, next) {
         res.redirect(wechatUrl.replace('MyUrl',url));
     }else{
         httpProxy('/user/queryUserinfo',{userid: req.session.user.userInfo.userid},function(body){
-            var data = body.data;
+            var data = JSON.parse(body).data;
             console.log("+++++++++++++++");
             console.log(body);
             if(!data.flag){
