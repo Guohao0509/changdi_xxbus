@@ -460,7 +460,8 @@ app.controller('ScheduleOpenedController',function($rootScope,$scope,$state,$myH
             $myHttpService.post('api/busline/queryCycleBuslines',{
                 offset:$scope.offset,
                 pagesize:$scope.pagesize,
-                company:window.global.config.user.userInfo.company
+                company:window.global.config.user.userInfo.company,
+                userid:$rootScope.session.user.userInfo.userid
             },function(data){
                 // console.log("关于已开通路线:"+JSON.stringify(data));
                 $scope.totalnum = data.totalnum;

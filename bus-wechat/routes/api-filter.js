@@ -10,6 +10,10 @@ var filter = function(req,res,next){
   //   req.body.company = res.session.user.userInfo.company;
   // }
   httpProxy(serviceUrl,req.body,function(data){
+    if(data.code == 0&&data.data.flag == false){
+      req.session.user = null;
+      res.redirect('/spa/index?return='+req.query.return+'#/'+req.query.return);
+    }
     res.send(data);
     res.end();
   },function(data){
