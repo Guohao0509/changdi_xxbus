@@ -30,21 +30,38 @@ router.get('/spa/index', function(req, res, next) {
         res.redirect(wechatUrl.replace('MyUrl',url));
     }else{
         httpProxy('/user/queryUserinfo',{userid: req.session.user.userInfo.userid},function(data){
-            // if(
-            //     !data.flag||
-            //     data.user.username != req.session.user.userInfo.username||
-            //     data.user.phone != req.session.user.userInfo.phone||
-            //     data.user.sex != req.session.user.userInfo.sex||
-            //     data.user.unitid != req.session.user.userInfo.unitid
-            // ){
-            //     res.session.user = null;
-            //     res.redirect('/spa/index?');
-            // }else{
+            if(!data.flag){
+                res.session.user = null;
+                res.redirect('/spa/index?');
+            }else if(
+                data.user.phone != req.session.user.userInfo.phone||
+                data.user.company != req.session.user.userInfo.company
+            ){
+                var tmpOpenId = req.session.user.openId;
+                req.session.user = {
+                    req.session.user= {
+                        openId: tmpOpenId,
+                        userInfo: data.user
+                    }
+                }
+                // if(
+                //     data.user.phone != req.session.user.userInfo.phone||
+                //     data.user.company != req.session.user.userInfo.company
+                // ){
+                //     req.session.user = {
+
+                //     }
+                // }
                 res.render('index',{
                     "user":req.session.user,
                     "version":"201611062153"
                 });
-            // }
+            }else{
+                res.render('index',{
+                    "user":req.session.user,
+                    "version":"201611062153"
+                });
+            }
         }, function(err){
             res.send(err);
             res.end();
