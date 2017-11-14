@@ -38,11 +38,9 @@ router.get('/spa/index', function(req, res, next) {
                 data.user.company != req.session.user.userInfo.company
             ){
                 var tmpOpenId = req.session.user.openId;
-                req.session.user = {
-                    req.session.user= {
-                        openId: tmpOpenId,
-                        userInfo: data.user
-                    }
+                req.session.user= {
+                    openId: tmpOpenId,
+                    userInfo: data.user
                 }
                 // if(
                 //     data.user.phone != req.session.user.userInfo.phone||
