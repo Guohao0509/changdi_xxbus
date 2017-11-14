@@ -31,7 +31,7 @@ router.get('/spa/index', function(req, res, next) {
     }else{
         httpProxy('/user/queryUserinfo',{userid: req.session.user.userInfo.userid},function(body){
             var data = body.data;
-            console.log('body',JSON.stringify(body));
+            console.log(body);
             if(!data.flag){
                 res.session.user = null;
                 res.redirect('/spa/index?');
