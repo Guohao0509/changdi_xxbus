@@ -32,7 +32,7 @@ router.get('/spa/index', function(req, res, next) {
         httpProxy('/user/queryUserinfo',{userid: req.session.user.userInfo.userid},function(body){
             var data = body.data;
             if(!data.flag){
-                res.session.user = null;
+                res.session.user = {};
                 res.redirect('/spa/index?');
             }else if(
                 data.user.phone != req.session.user.userInfo.phone||
@@ -43,14 +43,6 @@ router.get('/spa/index', function(req, res, next) {
                     openId: tmpOpenId,
                     userInfo: data.user
                 }
-                // if(
-                //     data.user.phone != req.session.user.userInfo.phone||
-                //     data.user.company != req.session.user.userInfo.company
-                // ){
-                //     req.session.user = {
-
-                //     }
-                // }
                 res.render('index',{
                     "user":req.session.user,
                     "version":"201611062153"
