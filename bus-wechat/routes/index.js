@@ -29,7 +29,8 @@ router.get('/spa/index', function(req, res, next) {
         var url = encodeURIComponent("http://xxbus.forku.cn/spa/getUserInfoByCode?return="+req.query.return);
         res.redirect(wechatUrl.replace('MyUrl',url));
     }else{
-        httpProxy('/user/queryUserinfo',{userid: req.session.user.userInfo.userid},function(data){
+        httpProxy('/user/queryUserinfo',{userid: req.session.user.userInfo.userid},function(body){
+            var data = body.data;
             if(!data.flag){
                 res.session.user = null;
                 res.redirect('/spa/index?');
@@ -37,23 +38,23 @@ router.get('/spa/index', function(req, res, next) {
                 data.user.phone != req.session.user.userInfo.phone||
                 data.user.company != req.session.user.userInfo.company
             ){
-                // var tmpOpenId = req.session.user.openId;
-                // req.session.user= {
-                //     openId: tmpOpenId,
-                //     userInfo: data.user
-                // }
-                // // if(
-                // //     data.user.phone != req.session.user.userInfo.phone||
-                // //     data.user.company != req.session.user.userInfo.company
-                // // ){
-                // //     req.session.user = {
+                var tmpOpenId = req.session.user.openId;
+                req.session.user= {
+                    openId: tmpOpenId,
+                    userInfo: data.user
+                }
+                // if(
+                //     data.user.phone != req.session.user.userInfo.phone||
+                //     data.user.company != req.session.user.userInfo.company
+                // ){
+                //     req.session.user = {
 
-                // //     }
-                // // }
-                // res.render('index',{
-                //     "user":req.session.user,
-                //     "version":"201611062153"
-                // });
+                //     }
+                // }
+                res.render('index',{
+                    "user":req.session.user,
+                    "version":"201611062153"
+                });
             }else{
                 res.render('index',{
                     "user":req.session.user,
