@@ -32,15 +32,16 @@ router.get('/spa/index', function(req, res, next) {
         httpProxy('/user/queryUserinfo',{userid: req.session.user.userInfo.userid},function(body){
             var data = body.data;
             if(!data.flag){
-                res.session.user = {};
+                res.session.user = null;
                 res.redirect('/spa/index?');
             }else if(
                 data.user.phone != req.session.user.userInfo.phone||
                 data.user.company != req.session.user.userInfo.company
             ){
-                var tmpOpenId = req.session.user.openId;
-                req.session.user= {
-                    openId: tmpOpenId,
+                req.session.user.tmpOpenId = req.session.user.openId;
+                req.session.user = {};
+                req.session.user = {
+                    openId: req.session.user.tmpOpenId,
                     userInfo: data.user
                 }
                 res.render('index',{
