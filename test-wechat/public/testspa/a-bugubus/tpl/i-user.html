@@ -1,0 +1,66 @@
+<ui-view ng-controller="IUserController">
+    <!--我的界面主页-->
+    <div class="bar bar-header bar-light">
+        <h1 class="title">用户信息</h1>
+        <button class="button" ng-click="edit()" ng-bind="editButtonText">保存</button>
+    </div>
+    <ion-content class="b-gray padding-top has-header">
+        <p class="padding-left gray">基本信息</p>
+        <div style="padding: 0;" class="list b-white gray f14" ng-show="!editMode" >
+            <a style="border-color: #dcdcdc; border-style: solid none none none;" class="item" >
+                <span class="ion-pricetags"  style="color: #fbc027;font-size: 18px;"></span>&nbsp;&nbsp;
+                用户编号
+                <span class="item-note">{{user.userid | idFilter}} </span>
+            </a>
+            <div style="border-bottom-width: 1px;border-bottom-style: solid;border-bottom-color:#dcdcdc;margin-left: 10px;margin-right: 10px;"></div>
+
+            <div style="border-bottom-width: 1px;border-bottom-style: solid;border-bottom-color:#dcdcdc;margin-left: 10px;margin-right: 10px;"></div>
+            <a style="margin: 0;border-color: #dcdcdc; border-style: none none none none;"  class="item">
+                <span class="ion-person" style="color: rgba(113, 186, 35, 0.72);font-size: 18px;" ></span>&nbsp;&nbsp;
+                姓名
+                <span class="item-note">
+                    <span ng-show="user.username==undefined">待完善</span>
+                    <span ng-show="user.username!=undefined">{{user.username}}</span>
+                </span>
+            </a>
+            <div style="border-bottom-width: 1px;border-bottom-style: solid;border-bottom-color:#dcdcdc;margin-left: 10px;margin-right: 10px;"></div>
+            <a style="margin: 0;border-color: #dcdcdc;border-style: none none none none;" class="item">
+                <span class="ion-ios-telephone " style="color: #ee4e3a;font-size: 18px;"></span>&nbsp;&nbsp;
+                手机号
+                <span class="item-note">{{user.phone}}</span>
+            </a>
+            <div style="border-bottom-width: 1px;border-bottom-style: solid;border-bottom-color:#dcdcdc;margin-left: 10px;margin-right: 10px;"></div>
+             <a style="margin: 0;border-color: #dcdcdc; border-style: none none none none;" class="item" >
+                <span style="color: #4a86ed;font-size: 18px;">⚥</span>&nbsp;&nbsp;
+                性别
+                <span class="item-note">
+                    <span ng-show="user.sex==undefined">待完善</span>
+                     <span ng-show="user.sex!=undefined">{{user.sex|transfer:"sex"}}</span>
+                </span>
+            </a>
+            <div style="border-bottom-width: 1px;border-bottom-style: solid;border-bottom-color:#dcdcdc;margin-left: 10px;margin-right: 10px;"></div>
+            <a style="margin: 0;border-color: #dcdcdc;border-style: none none solid none;" class="item" >
+                <span class="icon ion-printer" style="color: #6254B2;font-size: 18px;"></span>&nbsp;&nbsp;
+                所在单位
+                <span class="item-note">
+                    <span ng-show="user.unitName==undefined">待完善</span>
+                     <span ng-show="user.unitName!=undefined">{{user.unitName}}</span>
+                </span>
+            </a>
+        </div>
+        <div ng-show="editMode">
+            <div class="list b-white">
+                <label class="item-input border-bottom">
+                    <span class="input-label f14 gray">姓名</span>
+                    <input type="text" ng-model="tempUser.username" name="mobile" ng-required="true" >
+                </label>
+                
+            </div>
+            <p class="padding-left gray">性别</p>
+            <ion-list>
+                <ion-radio style="padding:10px 0 10px 16px;"  ng-model="tempUser.sex" ng-value="0">男</ion-radio>
+                <ion-radio style="padding:10px 0 10px 16px;"  ng-model="tempUser.sex" ng-value="1">女</ion-radio>
+            </ion-list>
+        </div>
+    </ion-content>
+</ui-view>

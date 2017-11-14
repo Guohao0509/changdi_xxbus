@@ -296,7 +296,8 @@ app
                             return uiLoad.load(
                                 [
                                     basePath+'route/controller.js',
-                                    'http://webapi.amap.com/maps?v=1.3&key=1a5cdec55ebac9dbd85652429f54d4d1',
+                                    // 'http://webapi.amap.com/maps?v=1.3&key=1a5cdec55ebac9dbd85652429f54d4d1',
+                                    'http://webapi.amap.com/maps?v=1.3&key=1a5cdec55ebac9dbd85652429f54d4d1&plugin=AMap.CitySearch,AMap.Geocoder,AMap.Driving',
                                     'vendor/jquery/sortable/jquery.sortable.js'
                                 ] );
                         }]

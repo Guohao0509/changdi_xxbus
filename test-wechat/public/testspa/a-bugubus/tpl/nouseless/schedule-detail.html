@@ -1,0 +1,169 @@
+<ui-view ng-controller="ScheduleDetailController">
+    <!--<div class="tabs-striped tabs-top tabs-color-balanced tabs-color-light">-->
+        <!--<div class="tabs">-->
+            <!--<a class="tab-item active" >-->
+                <!--出发-->
+            <!--</a>-->
+            <!--<a  class="tab-item" ui-sref="schedule.detail2({bsid:busSchedule.bsid,mode:mode})">-->
+                <!--返回-->
+            <!--</a>-->
+        <!--</div>-->
+    <!--</div>-->
+    <ion-content scroll="false" class="padding-top">
+        <div  class="schedule-detail schedule-item f16"  style="position: absolute;left:10px;right:10px;z-index: 2;padding:10px 0px;" class="b-white">
+            <div class="row row-no-padding padding-horizontal">
+                <div class="lh30">
+                    <!--<div class="marker small"><i class="icon ion-ios-clock-outline positive f18"></i></div>-->
+                    <!--<span class="f16 departTime pr5" ng-bind="busSchedule.departtime"></span>-->
+                    <!--<span class="f16 departTime pr5" ng-bind="busSchedule.backDeparttime"></span>-->
+                    <!--<div class="marker-self-adaption">出发</div>-->
+                </div>
+            </div>
+
+            <div class="row row-no-padding padding-horizontal">
+                <div class="col-60">
+                    <div class="row-no-padding">
+                        <div data-tap-disabled="true" class="lh30">
+                            <div  class="marker small"><i style="color: #33cd5f;">起</i></div>
+                            <!--ng-bind="busSchedule.departaddr"-->
+                            <!--<span class="departAddress" >{{busSchedule.departaddr}}</span>-->
+                            <!-- <select style="text-overflow: ellipsis;overflow: hidden;white-space: nowrap;width: 140px;-webkit-appearance: none;border-radius: 0;line-height: 20px;background-color: #fff;border-right-style: none;"   ng-model="stopStationobj.startIndex"  ng-change="selectstartadd()" >
+                                <option  value="{{item.index}}"  ng-repeat="item in stopStationobj.stopstation" >{{item.stationname}}</option>
+                            </select> -->
+                            <!-- <i style="color: #959595;position: absolute;border: 1px solid black;line-height: 20px;top: 15px;border-left-style: none;" class="ion-chevron-down"></i> -->
+                        </div>
+                    </div>
+                    <div class="row-no-padding ">
+                        <div  data-tap-disabled="true"  style="position: relative;" class="lh30">
+                            <div class="marker small"><i style="color: #ef473a;">终</i></div>
+                            <!--<span class="departAddress" >{{busSchedule.arriveaddr}}</span>-->
+                            <!-- <select style="text-overflow: ellipsis;overflow: hidden;white-space: nowrap;width: 140px;-webkit-appearance: none;border-radius: 0;line-height: 20px;background-color: #fff;border-right-style: none;" ng-model="stopStationobj.endIndex" ng-change="selectendadd()"> -->
+                                <!--<option selected hidden>{{busSchedule.arriveaddr}}</option>-->
+                                <!-- <option value="{{item.index}}" ng-repeat="item in stopStationobj.stopstation">{{item.stationname}}</option>
+                            </select>
+                            <i style="color: #959595;position: absolute;border: 1px solid black;line-height: 20px;top: 5px;border-left-style: none;" class="ion-chevron-down"></i> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-50" style="">
+                   
+                        <div   class="lh30  assertive" >
+                
+                        </div>
+
+                    <div class=" lh30 gray f12" style="">预计到达时间 <span >{{addtime}}</span>分钟</div>
+                    <!--<div class="lh30 text-right assertive">-->
+                        <!--<div style="border:1px solid #ef473a;color:#ef473a;" class=" marker-self-adaption marker-self-adaption-assertive">更换终点位置 </div>-->
+                    <!--</div>-->
+                </div>
+            </div>
+            <ion-scroll zooming="false" direction="y" ng-show="!expandStatus" style="max-height: 200px;">
+                <div style="padding-top: 10px;"></div>
+                <div class="f14 station-tip padding-horizontal">经过停靠站点信息</div>
+                <ul class="station-list">
+                    <li class="station-list-item" ng-click ="RideactiveStations($index)" ng-class="{active:item.active}"
+                        ng-repeat="item in busStations" >
+                    <!--<li class="station-list-item" ng-click ="RideactiveStations($index)" ng-class="{active:item.active}"-->
+                        <!--ng-repeat="item in busStations">-->
+                        <div class="marker small" ng-show="$first">
+                            <i  class="icon icon-circle b-balanced"></i>
+                            <!--<div>{{item.stationname}}</div>-->
+                            <!--<i ng-show="item.active" style="color: #33cd5f;">起</i>-->
+                        </div>
+                        <!--<div >{{item.stationname}}</div>-->
+                        <div class="marker small" ng-show="$middle">
+                            <i  class="icon icon-circle b-gray"></i>
+                            <!--<i ng-show="item.active" style="color: #33cd5f;">起</i>-->
+                        </div>
+                        <div class="marker small" ng-show="$last">
+                            <i class="icon icon-circle b-assertive"></i>
+                            <!--<i ng-show="item.active" style="color: #33cd5f;">起</i>-->
+                        </div>
+                        {{item.stationname}}
+                        <span class="item-note positive pr5" ng-click="showLocation(item)">
+                            <i class="ion-navigate pr5"></i>导航</span>
+                    </li>
+                    <div class="station-list-dashed-border"></div>
+
+                    <!--<li  class="station-list-items" ng-click="DebusactiveStations($index)" ng-class="{actives:item.actives}" ng-repeat="item in busStations">-->
+                        <!--<div class="marker small" ng-show="$first">-->
+                            <!--<i ng-show="!item.actives" class="icon icon-circle b-assertive"></i>-->
+                            <!--<i ng-show="item.actives" style="color: #ef473a;">终</i>-->
+                        <!--</div>-->
+                        <!--<div class="marker small" ng-show="$middle">-->
+                            <!--<i ng-show="!item.actives" class="icon icon-circle b-assertive"></i>-->
+                            <!--<i ng-show="item.actives" style="color: #ef473a;">终</i>-->
+                        <!--</div>-->
+                        <!--<div class="marker small" ng-show="$last">-->
+                            <!--<i ng-show="!item.actives" class="icon icon-circle b-assertive"></i>-->
+                            <!--<i ng-show="item.actives" style="color: #ef473a;">终</i>-->
+                        <!--</div>-->
+                        <!--{{item.stationname}}-->
+                        <!--<span style="float: right;" class="item-notes positive pr5" ng-click="showLocation(item)">-->
+                            <!--<i class="ion-navigate pr5"></i>导航</span>-->
+                    <!--</li>-->
+                    <!--<div class="station-list-dashed-border"></div>-->
+                </ul>
+
+
+            </ion-scroll>
+
+            <div class="arrow" ng-click="expand()">
+                <i ng-class="{true:'ion-chevron-up',false:'ion-chevron-down'}[expandStatus]" ></i>
+            </div>
+        </div>
+        <div id="J_map_canvas" style="position: absolute;top: 0px;bottom: 0px;left:0px;right:0px;">
+        </div>
+        <!-- <div style="position: absolute;bottom: 10px;z-index: 10;" class="row" ng-show="stopStationobj.mode==2">
+            <div class="col-10"></div>
+            <div class="col-34"> -->
+                <!--{{stopStationobj.stopstation[stopStationobj.startIndex].stationname}}-->
+<!-- 
+                <button class="button button-middle button-block button-positive button-balanced"
+                        ng-show="stopStationobj.mode==2"
+                        ui-sref="ticket.pay({bsid:stopStationobj.bsid,chargingtype:2,staddr:stopStationobj.stopstation[stopStationobj.startIndex].stationname,edaddr:stopStationobj.stopstation[stopStationobj.endIndex].stationname,addprice:addprice,addtime:addtime})" >购买次票</button> -->
+                <!--ui-sref="ticket.store"-->
+            <!-- </div>
+            <div class="col-10"></div>
+
+            <div class="col-34">
+                <button class="button button-middle button-block button-positive button-balanced"
+                        ng-show="stopStationobj.mode==2" ui-sref="ticket.pay({bsid:stopStationobj.bsid,chargingtype:0,staddr:stopStationobj.stopstation[stopStationobj.startIndex].stationname,edaddr:stopStationobj.stopstation[stopStationobj.endIndex].stationname,addprice:addprice*22,addtime:addtime})">购买月票</button>
+
+            </div>
+            <div class="col-10"></div>
+        </div>
+        <div style="position: absolute;bottom: 10px;left:10px;right:10px;z-index: 10;" ng-show="stopStationobj.mode==1">
+            <button class="button button-middle button-block button-positive button-balanced" ng-show="stopStationobj.mode==1" ng-click="baoming()">立即报名</button>
+        </div>
+        <div style="position: absolute;bottom: 10px;left:10px;right:10px;z-index: 10;" ng-show="stopStationobj.mode==3">
+            <button class="button button-middle button-block button-positive button-balanced" ng-show="stopStationobj.mode==3"  ui-sref="ticket.store">购买次票</button>
+        </div>
+    </ion-content> -->
+</ui-view>
+<!--弹窗模板-->
+<!--<script id="templates/modal.html" type="text/ng-template">-->
+    <!--<ion-modal-view>-->
+        <!--<ion-header-bar class="bar bar-header bar-positive">-->
+            <!--<h1 class="title">起点</h1>-->
+            <!--<button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>-->
+        <!--</ion-header-bar>-->
+        <!--<ion-content class="padding">-->
+            <!--<div class="list">-->
+                <!--<label class="item item-input">-->
+                    <!--<span class="input-label">First Name</span>-->
+                    <!--<input ng-model="newUser.firstName" type="text">-->
+                <!--</label>-->
+                <!--<label class="item item-input">-->
+                    <!--<span class="input-label">Last Name</span>-->
+                    <!--<input ng-model="newUser.lastName" type="text">-->
+                <!--</label>-->
+                <!--<label class="item item-input">-->
+                    <!--<span class="input-label">Email</span>-->
+                    <!--<input ng-model="newUser.email" type="text">-->
+                <!--</label>-->
+                <!--<button class="button button-full button-positive" ng-click="createContact(newUser)">Create</button>-->
+            <!--</div>-->
+        <!--</ion-content>-->
+    <!--</ion-modal-view>-->
+<!--</script>-->

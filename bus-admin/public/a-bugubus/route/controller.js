@@ -185,8 +185,24 @@ app.controller('RouteEditController',function($tableListService,$compile,$rootSc
                 if (status === 'complete' && result.info === 'OK') {
                     $scope.formattedAddress = result.regeocode.formattedAddress;
                 }else{
-                   layer.msg('获取地址失败')
+                   layer.msg('获取地址失败');
                 }
+            });
+        },
+        drivingRoute: function(stations){
+            var drving = new AMap.Driving({
+                map: MapOperation.map,
+                hideMarkers: true
+            });
+            var startPoint, endPoint, waypoints = [], len = stations.length;
+            startPoint = [stations[0].lng,stations[0].lat];
+            endPoint = [stations[len-1].lng,stations[len-1].lat];
+            for(var i = 1; i < len-1; i++){
+                waypoints.push([stations[i].lng,stations[i].lat]);
+            }
+            drving.search(startPoint,endPoint,{waypoints:waypoints},function(){
+                //设置地图
+                MapOperation.map.setFitView();
             });
         },
         addMarkers:function(buslines){
@@ -224,6 +240,7 @@ app.controller('RouteEditController',function($tableListService,$compile,$rootSc
         calcRouteLine:function(){
             MapOperation.map.clearMap();
             MapOperation.addMarkers($scope.buslineStations);
+            MapOperation.drivingRoute($scope.buslineStations);
         }
 
     }
