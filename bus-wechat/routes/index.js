@@ -33,7 +33,7 @@ router.get('/spa/index', function(req, res, next) {
             var data = body.data;
             console.log(body);
             if(!data.flag){
-                console.log(1)
+                console.log(11111111111)
                 res.session.user = null;
                 res.redirect('/spa/index?');
             }else if(
@@ -41,7 +41,7 @@ router.get('/spa/index', function(req, res, next) {
                 data.user.phone != req.session.user.userInfo.phone||
                 data.user.company != req.session.user.userInfo.company
             ){
-                console.log(2)
+                console.log(222222222222)
                 req.session.tmpOpenId = req.session.user.openId;
                 req.session.user = {};
                 req.session.user = {
@@ -53,14 +53,14 @@ router.get('/spa/index', function(req, res, next) {
                     "version":"201611062153"
                 });
             }else{
-                 console.log(3)
+                 console.log(33333333333333)
                 res.render('index',{
                     "user":req.session.user,
                     "version":"201611062153"
                 });
             }
         }, function(err){
-                 console.log(4)
+                 console.log(4444444444444)
 
             res.send(err);
             res.end();
