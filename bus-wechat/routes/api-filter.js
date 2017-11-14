@@ -13,9 +13,10 @@ var filter = function(req,res,next){
     if(data.code == 0&&data.data.flag == false){
       req.session.user = null;
       res.redirect('/spa/index?return='+req.query.return+'#/'+req.query.return);
+    }else{
+      res.send(data);
+      res.end();
     }
-    res.send(data);
-    res.end();
   },function(data){
     res.send(data);
     res.end();
