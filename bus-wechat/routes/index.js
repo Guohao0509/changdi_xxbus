@@ -29,7 +29,7 @@ router.get('/spa/index', function(req, res, next) {
         var url = encodeURIComponent("http://xxbus.forku.cn/spa/getUserInfoByCode?return="+req.query.return);
         res.redirect(wechatUrl.replace('MyUrl',url));
     }else{
-        httpProxy('user/queryUserinfo',{userid: req.session.user.userInfo.userid},function(data){
+        httpProxy('/user/queryUserinfo',{userid: req.session.user.userInfo.userid},function(data){
             if(
                 !data.flag||
                 data.user.username != req.session.user.userInfo.username||
