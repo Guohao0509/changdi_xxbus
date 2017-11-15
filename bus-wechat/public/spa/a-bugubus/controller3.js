@@ -473,6 +473,9 @@ app.controller('ScheduleOpenedController',function($rootScope,$scope,$state,$myH
                 userid:$rootScope.session.user.userInfo.userid
             },function(data){
                 // console.log("关于已开通路线:"+JSON.stringify(data));
+                // if(data.flag == false){
+                //     $state.go('auth.login');
+                // }
                 $scope.totalnum = data.totalnum;
                 if($scope.totalnum-($scope.offset+$scope.pagesize)>0){
                     $scope.showMoreBtn  = true;
