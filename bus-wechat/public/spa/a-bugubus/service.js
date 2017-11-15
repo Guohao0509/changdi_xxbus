@@ -91,7 +91,7 @@ app.service('$myLocationService',function($ionicLoading){
         })
     }
 })
-    .service('$myHttpService',function($http,$ionicLoading){
+    .service('$myHttpService',function($http,$ionicLoading,$state){
         this.post = function(url,data,success,error){
             $ionicLoading.show();
             $http.post(url,data).success(function(data){
@@ -99,6 +99,10 @@ app.service('$myLocationService',function($ionicLoading){
                     $ionicLoading.hide();
                 },250);
                 if(data.code==0){
+                    if(data.data.flag ==false){
+                        $state.go('auth.login');
+                        return;
+                    }
                     success(data.data);
                 }else{
                     var errorMsg = "";
