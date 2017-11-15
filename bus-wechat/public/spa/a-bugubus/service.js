@@ -100,7 +100,7 @@ app.service('$myLocationService',function($ionicLoading){
                 },250);
                 if(data.code==0){
                     if(data.data.flag ==false){
-                        $state.go('auth.login');
+                        $state.go('auth.login',{},{location:'replace'});
                         return;
                     }
                     success(data.data);
