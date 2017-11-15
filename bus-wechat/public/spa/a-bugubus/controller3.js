@@ -485,7 +485,8 @@ app.controller('ScheduleOpenedController',function($rootScope,$scope,$state,$myH
             $myHttpService.postNoLoad('api/busline/queryCycleBuslines',{
                 offset:$scope.offset,
                 pagesize:$scope.pagesize,
-                company:window.global.config.user.userInfo.company
+                company:window.global.config.user.userInfo.company,
+                userid:$rootScope.session.user.userInfo.userid
             },function(data){
                 $scope.totalnum = data.totalnum;
                 if($scope.totalnum-($scope.offset+$scope.pagesize)>0){

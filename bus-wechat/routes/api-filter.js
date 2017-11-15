@@ -11,8 +11,7 @@ var filter = function(req,res,next){
   // }
   httpProxy(serviceUrl,req.body,function(data){
     if(data.code == 0&&data.data.flag == false){
-      req.session.user = null;
-      res.redirect('/spa/index?return='+req.query.return+'#/'+req.query.return);
+      res.redirect('/spa/index?#/auth/login');
     }else{
       res.send(data);
       res.end();
