@@ -123,16 +123,23 @@ app.controller('BusListController',function($rootScope,$scope,$http,$state,$loca
     $tableListService.get();
     // console.log($scope);
 });
-app.controller('BusPositionController', function($scope, $rootScope,$stateParams) {
+app.controller('BusPositionController', function($scope, $rootScope,$stateParams,$http,$myHttpService) {
     //根据车辆的id获取位置信息，先判断obd状态，如果obd状态为不正常，先唤醒obd，在获取位置信息
-    var carPosition = $stateParams.carPosition;
+    var carId = $stateParams.carId;
+    var timing = 0;
     var map = new AMap.Map('J_map_canvas', {
         resizeEnable: true,
         zoom:11,
-        center: carPosition.split('&')
     });
-    marker = new AMap.Marker({
-        position: carPosition.split('&'),
+    var marker = new AMap.Marker({
     });
     marker.setMap(map);
+    function carPosition(){
+        timing = 5000;
+        $myHttpService.post("api/car/queryCarCurrLocation",{carid: carId},function(data){
+            marker.setPosition(new AMap.LngLat(data.carinfo.currlon,data.carinfo.currlat));
+        });
+        setTimeout(carPosition,timing);
+    }
+    carPosition();
 })

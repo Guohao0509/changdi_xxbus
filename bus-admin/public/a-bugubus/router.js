@@ -295,11 +295,10 @@ app
                         function( uiLoad ){
                             return uiLoad.load(
                                 [
-                                    basePath+'route/controller.js',
+                                    'vendor/jquery/sortable/jquery.sortable.js',
+                                    basePath+'route/controller.js'
                                     // 'http://webapi.amap.com/maps?v=1.3&key=1a5cdec55ebac9dbd85652429f54d4d1',
-                                    'http://webapi.amap.com/maps?v=1.3&key=1a5cdec55ebac9dbd85652429f54d4d1&plugin=AMap.CitySearch,AMap.Geocoder,AMap.Driving',
-                                    'vendor/jquery/sortable/jquery.sortable.js'
-                                ] );
+                                ]);
                         }]
                 }
             })
@@ -375,7 +374,9 @@ app
                     deps: ['$ocLazyLoad',
                         function( $ocLazyLoad ){
                             //延迟加载授权控制器
-                            return $ocLazyLoad.load(basePath+'bus/controller.js');
+                            return $ocLazyLoad.load([
+                                basePath+'bus/controller.js'
+                            ]);
                         }]
                 }
             })
@@ -417,7 +418,7 @@ app
             })
             .state('app.bus.position', {
                 //跳转到车辆编辑界面
-                url: '/position/{carPosition}',
+                url: '/position/{carId}',
                 templateUrl: basePath+'bus/position.html',
                 ncyBreadcrumb: {
                     parent:'app.bus.list',

@@ -10,12 +10,8 @@ var filter = function(req,res,next){
   //   req.body.company = res.session.user.userInfo.company;
   // }
   httpProxy(serviceUrl,req.body,function(data){
-    if(data.code == 0&&data.data.flag == false){
-      res.redirect('/spa/index?#/auth/login');
-    }else{
-      res.send(data);
-      res.end();
-    }
+    res.send(data);
+    res.end();
   },function(data){
     res.send(data);
     res.end();

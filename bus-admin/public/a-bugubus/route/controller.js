@@ -18,6 +18,7 @@ app.controller('RouteEditController',function($tableListService,$compile,$rootSc
             multiTable: 'companyList',
             callback: function(){
                 $myHttpService.post("api/busline/queryBusline.htm",{"lineid":$stateParams.id},function(data){
+                    console.log(data);
                     var tmpData = {
                         busline: data.busline,
                         stations: data.stations
@@ -42,6 +43,9 @@ app.controller('RouteEditController',function($tableListService,$compile,$rootSc
                         $sortable.sortable();
                     });
                     MapOperation.addMarkers($scope.buslineStations);
+                    if($scope.busline.buslineTrail){
+                        $scope.routeEditor = MapOperation.routeEditor(JSON.parse($scope.busline.buslineTrail));
+                    }
                 });
             }
         };
@@ -94,6 +98,7 @@ app.controller('RouteEditController',function($tableListService,$compile,$rootSc
         contextMenuPositon: null,
         contextMenu: null,
         geocoder: null,
+        lineArr: [],
         createMap: function(){
             MapOperation.map = new AMap.Map('J_map_canvas', {
                 zooms:[1,18],
@@ -106,7 +111,7 @@ app.controller('RouteEditController',function($tableListService,$compile,$rootSc
                     city: "09"
                 });
             })
-            AMap.plugin(['AMap.Autocomplete','AMap.PlaceSearch'],function(){//回调函数
+            AMap.plugin(['AMap.Autocomplete','AMap.PlaceSearch','AMap.Driving','AMap.PolyEditor','AMap.MouseTool'],function(){//回调函数
                 //实例化Autocomplete
                 var autoOptions = {
                     city: "09", //城市，默认全国
@@ -205,22 +210,62 @@ app.controller('RouteEditController',function($tableListService,$compile,$rootSc
                 MapOperation.map.setFitView();
             });
         },
+        routeEditor: function(stations){
+            if( MapOperation.lineArr.length == 0){
+                for(var i = 0; i < stations.length; i++){
+                    MapOperation.lineArr.push([stations[i].lng,stations[i].lat]);
+                }
+            }
+            var editor={};
+            editor._line=(function(){
+                return new AMap.Polyline({
+                    map: MapOperation.map,
+                    path: MapOperation.lineArr,
+                    strokeColor: "#1BAC2E",//线颜色
+                    isOutline: true,
+                    outlineColor: "#fff",
+                    borderWeight: 1.5,
+                    lineJoin: "round",
+                    strokeOpacity: 1,//线透明度
+                    strokeWeight: 6,//线宽
+                    strokeStyle: "solid",//线样式
+                    strokeDasharray: [10, 5],//补充线样式
+                    showDir: true
+                });
+            })();
+            MapOperation.map.setFitView();
+            editor._lineEditor= new AMap.PolyEditor(MapOperation.map, editor._line);
+            editor.startEditLine=function(){
+                editor._lineEditor.open();
+            }
+            editor.closeEditLine=function(){
+                console.log(MapOperation.lineArr);
+                editor._lineEditor.close();
+            }
+            return editor;
+        },
         addMarkers:function(buslines){
             for(var i = 0,len = buslines.length;i<len;i++){
-                var text = "<div class='marker station-marker'>"+i+"</div>";
+                var text = "<div> <div class='markerNum'>"+i+"</div><img src='http://webapi.amap.com/theme/v1.3/markers/n/mid.png'>  </div>";
+                var icon = 'http://webapi.amap.com/theme/v1.3/markers/n/mid.png'
+                
                 if(i==0){
-                    text="<div class='marker start-marker'>起</div>";
+                    text="<div><img src='http://webapi.amap.com/theme/v1.3/markers/n/start.png'></div>";
+                    icon='http://webapi.amap.com/theme/v1.3/markers/n/start.png'
                 }else if(i==len-1){
-                    text="<div class='marker stop-marker'>终</div>";
+                    text="<div><img src='http://webapi.amap.com/theme/v1.3/markers/n/end.png'></div>";
+                    icon='http://webapi.amap.com/theme/v1.3/markers/n/end.png'
                 }
                 var marker = new AMap.Marker({
                     map: MapOperation.map,
                     position:new AMap.LngLat(buslines[i].lng,buslines[i].lat),
+                    // icon:icon,
                     content:text,
                     extData:buslines[i],
                     draggable:true
                 });
                 AMap.event.addListener(marker,"dragend",function(e){
+                    console.log(e);
                     //修改站点的坐标位置
                     for(var j= 0,len2=$scope.buslineStations.length;j<len2;j++){
                         var data = this.getExtData();
@@ -238,9 +283,11 @@ app.controller('RouteEditController',function($tableListService,$compile,$rootSc
             }
         },
         calcRouteLine:function(){
+            MapOperation.lineArr = [];
             MapOperation.map.clearMap();
             MapOperation.addMarkers($scope.buslineStations);
-            MapOperation.drivingRoute($scope.buslineStations);
+            // MapOperation.drivingRoute($scope.buslineStations);
+            $scope.routeEditor = MapOperation.routeEditor($scope.buslineStations);
         }
 
     }
@@ -262,6 +309,7 @@ app.controller('RouteEditController',function($tableListService,$compile,$rootSc
             }
         })
     }
+   
     function openInfo(item) {
         // console.log(item)
         // var info = '<div class="pannal" style="padding: 5px;"><div>经度 :'+item.location.lng+' 纬度 :'+item.location.lat+'</div><div>地址 :'+item.formattedAddress+'</div><a ng-click="add()" class="label label-info pull-right">点击添加</a>';
@@ -326,7 +374,6 @@ app.controller('RouteEditController',function($tableListService,$compile,$rootSc
     }
 
     MapOperation.createMap();
-
     //停靠点编辑
     $scope.edit = function(index){
         closeEditMode(index);
@@ -380,6 +427,7 @@ app.controller('RouteEditController',function($tableListService,$compile,$rootSc
             $scope.busline.arriveaddr = stations[len-1].stationname;
             $scope.busline.arrivelon = stations[len-1].stalongitude;
             $scope.busline.arrivelat = stations[len-1].stalatitude;
+            $scope.busline.buslineTrail = JSON.stringify(MapOperation.lineArr);
             var data = {
                 busline:$scope.busline,
                 stations:stations

@@ -285,7 +285,11 @@ app.controller('ScheduleDetailController',function($ionicPopup,$window,$rootScop
         // MapOperation.addMarkers( $scope.goSchedule.line.stations);
         console.log($scope.busStations)
         MapOperation.addMarkers($scope.busStations);
-        MapOperation.drivingSearch($scope.busStations);
+        if($scope.busSchedule.buslineTrail){
+            MapOperation.addPolyline(JSON.parse($scope.busSchedule.buslineTrail));
+        }else{
+            MapOperation.drivingSearch($scope.busStations);
+        }
     });
 
     /*
@@ -302,7 +306,7 @@ app.controller('ScheduleDetailController',function($ionicPopup,$window,$rootScop
             if(!carMarkerFlag){
                 //创建一个地图对象
                 carMarkerFlag = true;
-                console.log('marker不存在, new marker')
+                console.log('marker不存在, new marker');
                 carMarker = new AMap.Marker({
                     map: map,
                     position:[data.car.currlon,data.car.currlat],
