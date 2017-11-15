@@ -220,11 +220,16 @@ app.controller('ScheduleDetailController',function($ionicPopup,$window,$rootScop
         addPolyline:function(polyline){
             var polyline = new AMap.Polyline({
                 path: polyline,         //设置线覆盖物路径
-                strokeColor: "#3366FF", //线颜色
+                strokeColor: "#1BAC2E", //线颜色
                 strokeOpacity: 1,       //线透明度
-                strokeWeight: 5,        //线宽
+                strokeWeight: 6,        //线宽
                 strokeStyle: "solid",   //线样式
-                strokeDasharray: [10, 5]//补充线样式
+                strokeDasharray: [10, 5],//补充线样式
+                isOutline: true,
+                outlineColor: "#fff",
+                borderWeight: 1.5,
+                lineJoin: "round",
+                showDir: true
             });
             polyline.setMap(map);
             map.setFitView();

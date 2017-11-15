@@ -159,7 +159,7 @@ app.controller('RouteEditController',function($tableListService,$compile,$rootSc
                 };
                 if(len>1){
                     $scope.buslineStations.splice(len-1, 0, busline);
-                    busline.stationType = 0;
+                    // busline.stationType = 0;
                 }else{
                     $scope.buslineStations.push(busline);
                 }
@@ -344,7 +344,7 @@ app.controller('RouteEditController',function($tableListService,$compile,$rootSc
         }
         if(len>1){
             $scope.buslineStations.splice(len-1, 0, busline);
-            busline.stationType = 0;
+            // busline.stationType = 0;
         }else{
             $scope.buslineStations.push(busline);
         }
