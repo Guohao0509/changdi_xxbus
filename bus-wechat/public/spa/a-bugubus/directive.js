@@ -171,11 +171,3 @@ app.directive('touch',function(){
 //         }
 //     }
 // });
-
-
-
-
-
-
-
-

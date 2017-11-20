@@ -325,6 +325,7 @@ app.controller('ScheduleDetailController',function($ionicPopup,$window,$rootScop
 
         })
     }
+    carPosition();
     $interval(carPosition,5000);
 
     $scope.baoming = function(){
@@ -578,3 +579,8 @@ app.controller('ScheduleOpenedController',function($rootScope,$scope,$state,$myH
             })
         }
 })
+
+//carMarker的偏移量
+//定时器进入执行一次 （已经改了，还需测试）
+//当路由切换时销毁地图
+//地图卡顿，原因未知

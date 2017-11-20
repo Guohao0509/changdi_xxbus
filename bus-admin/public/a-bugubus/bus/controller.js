@@ -139,7 +139,10 @@ app.controller('BusPositionController', function($scope, $rootScope,$stateParams
         $myHttpService.post("api/car/queryCarCurrLocation",{carid: carId},function(data){
             marker.setPosition(new AMap.LngLat(data.carinfo.currlon,data.carinfo.currlat));
         });
-        setTimeout(carPosition,timing);
     }
     carPosition();
+    var timer = setInterval(carPosition,5000);
+    $scope.$on('$destroy',function() {
+       clearInterval(timer);
+    });
 })
