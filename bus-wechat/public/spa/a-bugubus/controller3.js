@@ -186,7 +186,29 @@ app.controller('ScheduleDetailController',function($ionicPopup,$window,$rootScop
     }
 
     $scope.init();
+    var carPosition = function(){
+        $myHttpService.postNoLoad('api/busline/queryCarLocation',{carid:$scope.busSchedule.carid},function(data){
+            /*接收数据*/
+            // console.log(data)
+            //alert('lnglat:'+lnglat);
+            /*判断marker是否存在*/
+            if(!carMarkerFlag){
+                //创建一个地图对象
+                carMarkerFlag = true;
+                console.log('marker不存在, new marker');
+                carMarker = new AMap.Marker({
+                    map: map,
+                    position:[data.car.currlon,data.car.currlat],
+                    content:content,
+                    draggable:false
+                });
+            }else{
+                console.log('ser Marker');
+                carMarker.setPosition([data.car.currlon,data.car.currlat]);
+            }
 
+        })
+    }
     //标记展开收起状态
     $scope.expandStatus = false;
     var MapOperation = {
@@ -295,6 +317,8 @@ app.controller('ScheduleDetailController',function($ionicPopup,$window,$rootScop
         }else{
             MapOperation.drivingSearch($scope.busStations);
         }
+        carPosition();
+        $interval(carPosition,5000);
     });
 
     /*
@@ -302,31 +326,8 @@ app.controller('ScheduleDetailController',function($ionicPopup,$window,$rootScop
      * */
     var content="<div class='bus-image marker'></div>";
     var carMarkerFlag = false, carMarker;
-    var carPosition = function(){
-        $myHttpService.postNoLoad('api/busline/queryCarLocation',{carid:$scope.busSchedule.carid},function(data){
-            /*接收数据*/
-            // console.log(data)
-            //alert('lnglat:'+lnglat);
-            /*判断marker是否存在*/
-            if(!carMarkerFlag){
-                //创建一个地图对象
-                carMarkerFlag = true;
-                console.log('marker不存在, new marker');
-                carMarker = new AMap.Marker({
-                    map: map,
-                    position:[data.car.currlon,data.car.currlat],
-                    content:content,
-                    draggable:false
-                });
-            }else{
-                console.log('ser Marker');
-                carMarker.setPosition([data.car.currlon,data.car.currlat]);
-            }
-
-        })
-    }
-    carPosition();
-    $interval(carPosition,5000);
+    
+    
 
     $scope.baoming = function(){
         //检查用户的登陆情况，没有登录则跳转到登录页
