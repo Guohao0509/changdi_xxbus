@@ -3,7 +3,7 @@
 	"output": "build",
 	"output2": "build/spa",
 	"js": {
-		"mangle": false
+		"mangle": true
 	},
 	"css":{},
 	"html":{},
