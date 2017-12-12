@@ -118,7 +118,7 @@ app.controller('RouteEditController',function($tableListService,$compile,$rootSc
                     input:"searchPosition"//使用联想输入的input的id
                 };
                 autocomplete = new AMap.Autocomplete(autoOptions);
-                //TODO: 使用autocomplete对象调用相关功能
+                //使用autocomplete对象调用相关功能
                 var placeSearch = new AMap.PlaceSearch({
                     city:'09',
                     map:MapOperation.map
@@ -249,7 +249,7 @@ app.controller('RouteEditController',function($tableListService,$compile,$rootSc
                 var text = "<div> <div class='markerNum'>"+i+"</div><img src='http://webapi.amap.com/theme/v1.3/markers/n/mid.png'>  </div>";
                 var icon = 'http://webapi.amap.com/theme/v1.3/markers/n/mid.png'
                 
-                if(i==0){
+                if(i==0){ 
                     text="<div><img src='http://webapi.amap.com/theme/v1.3/markers/n/start.png'></div>";
                     icon='http://webapi.amap.com/theme/v1.3/markers/n/start.png'
                 }else if(i==len-1){
@@ -298,14 +298,12 @@ app.controller('RouteEditController',function($tableListService,$compile,$rootSc
     $scope.getLngLat = function() {
         MapOperation.geocoder.getLocation($scope.address.formattedAddress, function(status, result){
             if (status === 'complete' && result.info === 'OK') {
-                //TODO:获得了有效经纬度，可以做一些展示工作
-                //比如在获得的经纬度上打上一个Marker
+                //获得了有效经纬度，可以做一些展示工作
                 $scope.address.gdPosition = result.geocodes;
                 openInfo($scope.address.gdPosition[0]);
-                
             }else{
                 //获取经纬度失败
-                layer.msg('没有找到您输入的地址')
+                layer.msg('没有找到您输入的地址');
             }
         })
     }
