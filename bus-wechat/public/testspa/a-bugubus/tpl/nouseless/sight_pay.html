@@ -1,0 +1,74 @@
+<ui-view  ng-controller="Sight_pay">
+    <!--景区列表-->
+    <div class="bar bar-header bar-light">
+        <h1 class="title">确认订单</h1>
+    </div>
+
+    <ion-content   has-bouncing="false" class="sight-details has-header has-footer ">
+
+        <!--<div style="margin-left: 25px;" class="row-no-padding">-->
+            <!--<div class="lh30">-->
+                <!--<div class="marker small"><i class="icon icon-circle b-balanced"></i></div>-->
+                <!--<span class="departAddress" ></span>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div style="margin-left: 25px;" class="row-no-padding">-->
+            <!--<div class="lh30">-->
+                <!--<div class="marker small"><i class="icon icon-circle b-balanced"></i></div>-->
+                <!--<span class="departAddress" ></span>-->
+            <!--</div>-->
+        <!--</div>-->
+            <div class="list">
+                <div class="item item-divider">基本信息</div>
+                <label class="item item-input">
+                    <span class="input-label">联系昵称</span>
+                    <input type="text">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">联系方式</span>
+                    <input type="text">
+                </label>
+
+
+                <div class="item item-divider">景区信息</div>
+                <div class="item ">
+                    景区名称
+                    <span>合康变频</span>
+                </div>
+                <div class="item">
+                    景区地址
+                    <span>佛祖岭三路六号</span>
+                </div>
+
+                <div class="item item-divider">购买信息</div>
+
+                <a class="item" href="#">
+                    出发日期
+                    <span>{{date|date:"yyyy-MM-dd"}}</span>
+                    <i style="float: right" class="ion-chevron-right"></i>
+                </a>
+                <div class="item">
+                    购买数量
+                    <div style="float: right;border:1px solid #f5f5f5">
+                        <div style="float: left;" >－</div>
+                        <div style="float: left;" >12</div>
+                        <div style="float: left" >＋</div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+    </ion-content>
+    <!--<div class="bar bar-footer" ui-sref="create_route">-->
+    <!--<button class="button button-block button-positive button-balanced">发起我的新线路</button>-->
+    <!--</div>-->
+
+    <div style="padding: 0px;"   class="bar bar-footer">
+        <div class="assertive" style="width: 50%;padding: 10px;text-align: center;">
+           <span style="line-height: 30px;"> 门票价格元</span>
+        </div>
+        <button style="width: 50%;border-radius: 0px;" class="button button-block button-positive button-balanced"  ng-click="">提交订单</button>
+    </div>
+</ui-view>
